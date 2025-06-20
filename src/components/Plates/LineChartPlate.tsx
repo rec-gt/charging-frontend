@@ -46,16 +46,16 @@ const timeSeries = Array.from({ length: 120 }, (_, i) => {
     .format("HH:mm:ss");
 });
 
-const t1Series = Array.from({ length: 120 }, (_, i) => {
+const t1Series = Array.from({ length: 120 }, (_) => {
   return 8 + Math.random() * 5;
 });
 
-const t2Series = Array.from({ length: 120 }, (_, i) => {
+const t2Series = Array.from({ length: 120 }, (_) => {
   return 8 + Math.random() * 5;
 });
 
 export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
-  const { title, icon, series, ...rest } = props;
+  const { title, icon } = props;
   return (
     <Plate title={title} icon={icon}>
       <div className="w-full h-full">
