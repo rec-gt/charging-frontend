@@ -1,0 +1,50 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import {
+  HSWW_COLOR_MAPPING,
+  HSWW_ICON_MAPPING,
+  LANG,
+  LANG_OBJ,
+  WARNING_LEVEL,
+} from "../../utils";
+
+export const Realtime: React.FC = () => {
+  const [realtimeWarning, setRealtimeWarning] = useState(WARNING_LEVEL.CANCEL);
+
+  const handleCrawler = async () => {
+    await axios({
+      method: "GET",
+      url: "https://data.weather.gov.hk/weatherAPI/opendata/hsww.php?lang=en",
+    }).then((res) => {
+      if (!res || !res.data || !res.data.warningLevel) {
+        setRealtimeWarning(WARNING_LEVEL.CANCEL);
+        // setRealtimeWarning(WARNING_LEVEL.AMBER);
+      } else {
+        setRealtimeWarning(res.data.warningLevel);
+      }
+    });
+  };
+
+  useEffect(() => {
+    handleCrawler();
+
+    const interval = setInterval(() => {
+      handleCrawler();
+    }, 10 * 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return (
+    <div className="w-full flex flex-col justify-start items-center gap-4 bg-(--color-secondary) h-[400px] pt-24  sm:h-[calc(100vh-6rem)]">
+      <div className="text-2xl">{LANG(LANG_OBJ.CURRENT_SITUATION_TEXT)}</div>
+      <img
+        className="w-[100px] h-[100px]"
+        src={HSWW_ICON_MAPPING[realtimeWarning]}
+      />
+      <div className="text-2xl">{HSWW_COLOR_MAPPING[realtimeWarning]}</div>
+    </div>
+  );
+};

@@ -1,0 +1,57 @@
+export enum USER_ROLE {
+  PLAYER = "PLAYER",
+  MERCHANT = "MERCHANT",
+  GUEST = "GUEST",
+}
+
+export enum GAME_NAMES {
+  ALTERED = "ALTERED",
+  KEYFORGE = "KEYFORGE",
+  STARWAR = "STARWAR",
+}
+
+export const EVENT_FORMAT = {
+  [GAME_NAMES.KEYFORGE]: {
+    ARCHON: "ARCHON",
+    ALLIANCE: "ALLIANCE",
+    SEALED: "SEALED",
+    OTHERS: "OTHERS",
+  },
+  [GAME_NAMES.ALTERED]: {
+    STANDARD: "STANDARD",
+    DRAFT: "DRAFT",
+    SEALED: "SEALED",
+    OTHERS: "OTHERS",
+  },
+  [GAME_NAMES.STARWAR]: {
+    PREMIER: "PREMIER",
+    DRAFT: "DRAFT",
+    SEALED: "SEALED",
+    OTHERS: "OTHERS",
+  },
+};
+
+export enum VIEW_MODE {
+  VIEW_ONLY = "VIEW_ONLY",
+  EDIT_MODE = "EDIT_MODE",
+  
+  VIEW_PAST = "VIEW_PAST",
+  VIEW_ON_GOING = "VIEW_ON_GOING",
+  VIEW_UP_COMING = "VIEW_UP_COMING",
+
+  VIEW_CREATED = "VIEW_CREATED",
+  VIEW_STARTED = "VIEW_STARTED",
+  VIEW_FINISHED = "VIEW_FINISHED",
+}
+
+export enum TOURNAMENT_STATUS {
+  CREATED = "CREATED",
+  STARTED = "STARTED",
+  FINISHED = "FINISHED",
+}
+
+export type SimpleUserType = {
+  username: string;
+  displayName: string;
+  icon: string;
+};
