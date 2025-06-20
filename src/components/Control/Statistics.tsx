@@ -1,4 +1,5 @@
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
+import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import { LANG, LANG_OBJ } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
@@ -14,7 +15,7 @@ export const Statistics: React.FC = () => {
           text={"21.25°C"}
           value={21.25}
           color={"#4c84ff"}
-          icon={<ThermostatIcon fontSize="small" sx={{ color: "#4c84ff" }} />}
+          icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
         />
       </div>
       <div className="row-start-2 col-span-1 row-span-1">
@@ -23,7 +24,7 @@ export const Statistics: React.FC = () => {
           text={"23.5°C"}
           value={23.5}
           color={"#52b202"}
-          icon={<ThermostatIcon fontSize="small" sx={{ color: "#52b202" }} />}
+          icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
         />
       </div>
       <div className="row-start-3 col-span-1 row-span-1">
@@ -32,7 +33,7 @@ export const Statistics: React.FC = () => {
           text={"8.5A"}
           value={8.5}
           color={"#ffa500"}
-          icon={<ElectricBoltIcon fontSize="small" sx={{ color: "#ffa500" }} />}
+          icon={<ElectricBoltIcon sx={{ color: "#ffa500" }} />}
         />
       </div>
       <div className="row-start-4 col-span-1 row-span-1">
@@ -40,7 +41,7 @@ export const Statistics: React.FC = () => {
           title={LANG(
             isConnected ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF
           )}
-          icon={<ElectricBoltIcon fontSize="small" sx={{ color: "#ffa500" }} />}
+          icon={<ElectricalServicesIcon />}
           isConnected={isConnected}
         />
       </div>

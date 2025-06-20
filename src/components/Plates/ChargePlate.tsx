@@ -13,7 +13,7 @@ export const ChargePlate: React.FC<ChargePlateProps> = (props) => {
   const { title, isConnected, icon } = props;
   return (
     <Plate title={title} icon={icon}>
-      <div className="w-[40px] h-[40px] flex justify-center items-center">
+      <div className="w-[40px] h-full flex justify-center items-center">
         {isConnected ? (
           <PowerIcon sx={{ fill: "#52b202", transform: "scale(2)" }} />
         ) : (
