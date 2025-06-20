@@ -15,6 +15,24 @@ const defaultStats = {
   isConencted: true,
 };
 
+const timeSeries = Array.from({ length: 120 }, (_, i) => {
+  return dayjs()
+    .subtract(120 - i, "second")
+    .format("HH:mm:ss");
+});
+
+const t1Series = Array.from({ length: 120 }, (_) => {
+  return 8 + Math.random() * 5;
+});
+
+const t2Series = Array.from({ length: 120 }, (_) => {
+  return 8 + Math.random() * 5;
+});
+
+const t3Series = Array.from({ length: 120 }, (_) => {
+  return 8 + Math.random() * 5;
+});
+
 export const Statistics: React.FC = () => {
   const [stats, setStats] = useState(defaultStats);
 
@@ -24,6 +42,7 @@ export const Statistics: React.FC = () => {
 
   const [ambientTemps, setAmbientTemps] = useState([]);
   const [stationTemps, setStationTemps] = useState([]);
+  const [currents, setCurrents] = useState([]);
 
   return (
     <div className="grid grid-cols-3 grid-rows-4 gap-2 h-[500px]">
@@ -68,47 +87,45 @@ export const Statistics: React.FC = () => {
         <LineChartPlate
           title={LANG(LANG_OBJ.GAUGE.TEMP_MONITOR)}
           icon={<EqualizerIcon />}
-          series={[
-            {
-              curve: "linear",
-              data: [1, 5, 2, 6, 3, 9.3],
-              label: LANG(LANG_OBJ.GAUGE.CHART_LABEL.AMBIENT),
-              color: "#4c84ff",
-            },
-            {
-              curve: "linear",
-              data: [6, 3, 7, 9.5, 4, 2],
-              label: LANG(LANG_OBJ.GAUGE.CHART_LABEL.STATION),
-              color: "#52b202",
-            },
-          ]}
+          data={{
+            labels: timeSeries,
+            datasets: [
+              {
+                label: LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP),
+                backgroundColor: "#4c84ff",
+                hoverBackgroundColor: "#4c84ff80",
+                borderWidth: 1,
+                borderColor: "#4c84ff",
+                data: t1Series,
+              },
+              {
+                label: LANG(LANG_OBJ.GAUGE.STATION_TEMP),
+                backgroundColor: "#52b202",
+                hoverBackgroundColor: "#52b20280",
+                borderWidth: 1,
+                borderColor: "#52b202",
+                data: t2Series,
+              },
+            ],
+          }}
         />
       </div>
       <div className="col-span-2 row-span-2">
         <LineChartPlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT_MONITOR)}
           icon={<EqualizerIcon />}
-          series={[
-            {
-              curve: "linear",
-              data: Array.from({ length: 120 }, (_, i) => {
-                return dayjs()
-                  .subtract(120 - i, "second")
-                  .format("YYYY-MM-DD HH:mm:ss");
-              }),
-              color: "#4c84ff",
-            },
-          ]}
-          xAxis={[
-            {
-              data: Array.from({ length: 120 }, (_, i) => i),
-            },
-          ]}
-          yAxis={[
-            {
-              data: [0, 1, 2],
-            },
-          ]}
+          data={{
+            labels: timeSeries,
+            datasets: [
+              {
+                label: LANG(LANG_OBJ.GAUGE.CURRENT),
+                backgroundColor: "#ffa500",
+                borderWidth: 1,
+                borderColor: "#ffa500",
+                data: t3Series,
+              },
+            ],
+          }}
         />
       </div>
     </div>
