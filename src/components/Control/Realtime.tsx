@@ -1,11 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
-  HSWW_COLOR_MAPPING,
-  HSWW_ICON_MAPPING,
-  LANG,
-  LANG_OBJ,
-  WARNING_LEVEL,
+  WARNING_LEVEL
 } from "../../utils";
 
 export const Realtime: React.FC = () => {

@@ -1,6 +1,5 @@
 import { LineChart } from "@mui/x-charts/LineChart";
 import React from "react";
-import { LANG, LANG_OBJ } from "../../utils";
 
 type LineChartPlateProps = {
   title: string;
