@@ -2,6 +2,8 @@ import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import { LANG, LANG_OBJ } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
+import dayjs from "dayjs";
+
 export const Statistics: React.FC = () => {
   return (
     <div className="grid grid-cols-3 grid-rows-4 gap-2">
@@ -57,10 +59,11 @@ export const Statistics: React.FC = () => {
           series={[
             {
               curve: "linear",
-              data: Array.from(
-                { length: 120 },
-                (_, i) => 8 + Math.random() * 5
-              ),
+              data: Array.from({ length: 120 }, (_, i) => {
+                return dayjs()
+                  .subtract(120 - i, "second")
+                  .format("YYYY-MM-DD HH:mm:ss");
+              }),
               color: "#4c84ff",
             },
           ]}
@@ -71,7 +74,7 @@ export const Statistics: React.FC = () => {
           ]}
           yAxis={[
             {
-              data: Array.from({ length: 13 }, (_, i) => i),
+              data: [0, 1, 2],
             },
           ]}
         />
