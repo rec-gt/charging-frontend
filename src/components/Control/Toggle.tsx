@@ -123,7 +123,7 @@ export const Toggle: React.FC = () => {
   };
 
   useEffect(() => {
-    getSystemMode();
+    // getSystemMode();
     handleCrawler();
 
     const interval = setInterval(() => {
