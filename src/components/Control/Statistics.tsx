@@ -1,7 +1,7 @@
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
+import EqualizerIcon from "@mui/icons-material/Equalizer";
 import { LANG, LANG_OBJ } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
 import dayjs from "dayjs";
@@ -50,7 +50,7 @@ export const Statistics: React.FC = () => {
       <div className="col-span-2 row-span-2">
         <LineChartPlate
           title={LANG(LANG_OBJ.GAUGE.TEMP_MONITOR)}
-          icon={<MonitorHeartIcon />}
+          icon={<EqualizerIcon />}
           series={[
             {
               curve: "linear",
@@ -70,7 +70,7 @@ export const Statistics: React.FC = () => {
       <div className="col-span-2 row-span-2">
         <LineChartPlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT_MONITOR)}
-          icon={<MonitorHeartIcon />}
+          icon={<EqualizerIcon />}
           series={[
             {
               curve: "linear",
