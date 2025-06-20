@@ -58,14 +58,7 @@ export const Statistics: React.FC = () => {
             {
               curve: "linear",
               data: [1, 5, 2, 6, 3, 9.3],
-              label: LANG(LANG_OBJ.GAUGE.CHART_LABEL.AMBIENT),
               color: "#4c84ff",
-            },
-            {
-              curve: "linear",
-              data: [6, 3, 7, 9.5, 4, 2],
-              label: LANG(LANG_OBJ.GAUGE.CHART_LABEL.STATION),
-              color: "#52b202",
             },
           ]}
         />
