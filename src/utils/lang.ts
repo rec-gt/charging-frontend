@@ -17,15 +17,17 @@ export const LANG_OBJ = {
   },
   GAUGE: {
     AMBIENT_TEMP: {
-      EN: "Ambient Temperature",
+      EN: "Ambient Temp.",
       JP: "周囲温度",
       ZH_T: "環境温度",
     },
+    CHARGE_TEMP: {
+      EN: "Charging Station Temp.",
+      JP: "充電ステーションの温度",
+      ZH_T: "充電站温度",
+    },
   },
 
-
-
-  
   SYSTEM_TITLE: {
     EN: "HSWW SYSTEM",
     JP: "",
