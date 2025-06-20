@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { LANG, LANG_ENUM, LANG_OBJ } from "../../utils";
+import { useDispatch } from "react-redux";
+import { setPageLoading } from "../../state/pageLoadingSlice";
+
 export const Header: React.FC = () => {
+  const dispatch = useDispatch();
   const [lang, setLang] = useState(sessionStorage.getItem("LANGUAGE"));
 
   const handleSetLang = (lang: LANG_ENUM) => {
+    dispatch(setPageLoading(true));
     setLang(lang);
     sessionStorage.setItem("LANGUAGE", lang);
     window.location.reload();

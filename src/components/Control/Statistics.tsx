@@ -12,37 +12,34 @@ const defaultStats = {
   ambientTemp: 21.25,
   stationTemp: 32.5,
   stationAmp: 8.53,
-  isConencted: true,
+  isConnected: true,
 };
 
-const timeSeries = Array.from({ length: 120 }, (_, i) => {
-  return dayjs()
-    .subtract(120 - i, "second")
-    .format("HH:mm:ss");
-});
-
-const t1Series = Array.from({ length: 120 }, (_) => {
-  return 8 + Math.random() * 5;
-});
-
-const t2Series = Array.from({ length: 120 }, (_) => {
-  return 8 + Math.random() * 5;
-});
-
-const t3Series = Array.from({ length: 120 }, (_) => {
-  return 8 + Math.random() * 5;
-});
+const defaultSeries = {
+  time: Array.from({ length: 120 }, (_, i) => {
+    return dayjs()
+      .subtract(120 - i, "second")
+      .format("HH:mm:ss");
+  }),
+  ambient: Array.from({ length: 120 }, (_) => {
+    return 8 + Math.random() * 5;
+  }),
+  station: Array.from({ length: 120 }, (_) => {
+    return 8 + Math.random() * 5;
+  }),
+  current: Array.from({ length: 120 }, (_) => {
+    return 8 + Math.random() * 5;
+  }),
+};
 
 export const Statistics: React.FC = () => {
   const [stats, setStats] = useState(defaultStats);
+  const [series, setSeries] = useState(defaultSeries);
 
   useEffect(() => {
     setStats(defaultStats);
+    setSeries(defaultSeries);
   }, []);
-
-  const [ambientTemps, setAmbientTemps] = useState([]);
-  const [stationTemps, setStationTemps] = useState([]);
-  const [currents, setCurrents] = useState([]);
 
   return (
     <div className="grid grid-cols-3 grid-rows-4 gap-2 h-[500px]">
@@ -77,10 +74,10 @@ export const Statistics: React.FC = () => {
       <div className="row-start-4 col-span-1 row-span-1">
         <ChargePlate
           title={LANG(
-            stats.isConencted ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF
+            stats.isConnected ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF
           )}
           icon={<ElectricalServicesIcon />}
-          isConnected={stats.isConencted}
+          isConnected={stats.isConnected}
         />
       </div>
       <div className="col-span-2 row-span-2">
@@ -88,7 +85,7 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.TEMP_MONITOR)}
           icon={<EqualizerIcon />}
           data={{
-            labels: timeSeries,
+            labels: series.time,
             datasets: [
               {
                 label: LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP),
@@ -96,7 +93,7 @@ export const Statistics: React.FC = () => {
                 hoverBackgroundColor: "#4c84ff80",
                 borderWidth: 1,
                 borderColor: "#4c84ff",
-                data: t1Series,
+                data: series.ambient,
               },
               {
                 label: LANG(LANG_OBJ.GAUGE.STATION_TEMP),
@@ -104,7 +101,7 @@ export const Statistics: React.FC = () => {
                 hoverBackgroundColor: "#52b20280",
                 borderWidth: 1,
                 borderColor: "#52b202",
-                data: t2Series,
+                data: series.station,
               },
             ],
           }}
@@ -115,14 +112,14 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.CURRENT_MONITOR)}
           icon={<EqualizerIcon />}
           data={{
-            labels: timeSeries,
+            labels: series.time,
             datasets: [
               {
                 label: LANG(LANG_OBJ.GAUGE.CURRENT),
                 backgroundColor: "#ffa500",
                 borderWidth: 1,
                 borderColor: "#ffa500",
-                data: t3Series,
+                data: series.current,
               },
             ],
           }}
