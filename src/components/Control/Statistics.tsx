@@ -3,6 +3,7 @@ import ThermostatIcon from "@mui/icons-material/Thermostat";
 import { LANG, LANG_OBJ } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
 import dayjs from "dayjs";
+import { ChargePlate } from "../Plates/ChargePlate";
 
 export const Statistics: React.FC = () => {
   return (
@@ -35,7 +36,7 @@ export const Statistics: React.FC = () => {
         />
       </div>
       <div className="row-start-4 col-span-1 row-span-1">
-        <GaugePlate
+        <ChargePlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
           text={"8.5A"}
           value={8.5}
