@@ -4,7 +4,7 @@ import { LANG, LANG_OBJ } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
 import dayjs from "dayjs";
 import { ChargePlate } from "../Plates/ChargePlate";
-
+const isConnected = false;
 export const Statistics: React.FC = () => {
   return (
     <div className="grid grid-cols-3 grid-rows-4 gap-2">
@@ -37,9 +37,11 @@ export const Statistics: React.FC = () => {
       </div>
       <div className="row-start-4 col-span-1 row-span-1">
         <ChargePlate
-          title={LANG(LANG_OBJ.GAUGE.CURRENT)}
+          title={LANG(
+            isConnected ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF
+          )}
           icon={<ElectricBoltIcon fontSize="small" sx={{ color: "#ffa500" }} />}
-          isConnected={true}
+          isConnected={isConnected}
         />
       </div>
       <div className="col-span-2 row-span-2">
