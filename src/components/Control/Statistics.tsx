@@ -4,7 +4,7 @@ import { LANG, LANG_OBJ } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
 export const Statistics: React.FC = () => {
   return (
-    <div className="grid grid-cols-3 grid-rows-3 gap-2">
+    <div className="grid grid-cols-3 grid-rows-4 gap-2">
       <div className="row-start-1 col-span-1 row-span-1">
         <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
@@ -51,14 +51,27 @@ export const Statistics: React.FC = () => {
           ]}
         />
       </div>
-      <div className="col-span-2 row-span-1">
+      <div className="col-span-2 row-span-2">
         <LineChartPlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT_MONITOR)}
           series={[
             {
               curve: "linear",
-              data: [1, 5, 2, 6, 3, 9.3],
+              data: Array.from(
+                { length: 120 },
+                (_, i) => 8 + Math.random() * 5
+              ),
               color: "#4c84ff",
+            },
+          ]}
+          xAxis={[
+            {
+              data: Array.from({ length: 120 }, (_, i) => i),
+            },
+          ]}
+          yAxis={[
+            {
+              data: Array.from({ length: 13 }, (_, i) => i),
             },
           ]}
         />

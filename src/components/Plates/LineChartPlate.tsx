@@ -5,10 +5,10 @@ type LineChartPlateProps = {
   title: string;
   icon?: any;
   series?: any;
-};
+} & any;
 
 export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
-  const { title, icon, series } = props;
+  const { title, icon, series, ...rest } = props;
   return (
     <div className="w-full h-full flex flex-col items-center rounded-xl border-[2px] border-[#ccc]">
       <div className="relative w-full flex justify-between">
@@ -16,7 +16,7 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
         {icon && <div className="absolute top-0 right-0">{icon}</div>}
       </div>
       <div className="w-full h-full">
-        <LineChart className="w-full h-full" series={series} />
+        <LineChart className="w-full h-full" series={series} {...rest} />
       </div>
     </div>
   );
