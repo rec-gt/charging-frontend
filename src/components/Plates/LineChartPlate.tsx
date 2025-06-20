@@ -22,8 +22,8 @@ const options = {
     },
     x: {
       ticks: {
-        maxRotation: 90,
-        minRotation: 90,
+        maxRotation: 0,
+        minRotation: 0,
       },
     },
   },
@@ -39,6 +39,20 @@ const options = {
   },
 };
 
+const timeSeries = Array.from({ length: 600 }, (_, i) => {
+  return dayjs()
+    .subtract(600 - i, "second")
+    .format("HH:mm:ss");
+});
+
+const t1Series = Array.from({ length: 600 }, (_, i) => {
+  return 8 + Math.random() * 5;
+});
+
+const t2Series = Array.from({ length: 600 }, (_, i) => {
+  return 8 + Math.random() * 5;
+});
+
 export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
   const { title, icon, series, ...rest } = props;
   return (
@@ -51,29 +65,21 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
         <Line
           options={options}
           data={{
-            labels: Array.from({ length: 120 }, (_, i) => {
-              return dayjs()
-                .subtract(120 - i, "second")
-                .format("HH:mm:ss");
-            }),
+            labels: timeSeries,
             datasets: [
               {
                 label: "T1",
+                borderColor: "#4c84ff",
                 backgroundColor: "#4c84ff",
                 hoverBackgroundColor: "#4c84ff80",
-                data: Array.from(
-                  { length: 120 },
-                  (_, i) => 8 + Math.random() * 5
-                ),
+                data: t1Series,
               },
               {
                 label: "T2",
+                borderColor: "#52b202",
                 backgroundColor: "#52b202",
                 hoverBackgroundColor: "#52b20280",
-                data: Array.from(
-                  { length: 120 },
-                  (_, i) => 8 + Math.random() * 5
-                ),
+                data: t2Series,
               },
             ],
           }}
