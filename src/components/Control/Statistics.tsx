@@ -40,11 +40,11 @@ export const Statistics: React.FC = () => {
   const [series, setSeries] = useState(defaultSeries);
 
   const handleGetStats = async () => {
-    await postReq2({ path: "/stats/get" }, dispatch);
+    await postReq2({ path: "/system/get/stats" }, dispatch);
   };
 
   const handleGetSeries = async () => {
-    await postReq2({ path: "/series/get" }, dispatch);
+    await postReq2({ path: "/system/get/series" }, dispatch);
   };
 
   useEffect(() => {
