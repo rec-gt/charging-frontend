@@ -54,6 +54,18 @@ export const LANG_OBJ = {
       ZH_T: "電流監測",
     },
   },
+  CHARGING: {
+    ON: {
+      EN: "Power Charging",
+      JP: "充電",
+      ZH_T: "充電中",
+    },
+    OFF: {
+      EN: "Power Charging Stopped",
+      JP: "充電を停止",
+      ZH_T: "停止充電",
+    },
+  },
 
   SYSTEM_TITLE: {
     EN: "HSWW SYSTEM",
