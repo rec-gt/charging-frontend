@@ -1,15 +1,9 @@
-import { Gauge } from "@mui/x-charts/Gauge";
+import { GaugePlate } from "../Gauges";
 
 export const Statistics: React.FC = () => {
   return (
-    <div className="">
-      <Gauge
-        value={75}
-        startAngle={0}
-        endAngle={360}
-        innerRadius="80%"
-        outerRadius="100%"
-      />
+    <div>
+      <GaugePlate title={""} value={23} content={""} color={""} />
     </div>
   );
 };
