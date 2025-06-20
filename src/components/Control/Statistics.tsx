@@ -6,9 +6,9 @@ export const Statistics: React.FC = () => {
     <div>
       <GaugePlate
         title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
+        text={"21.25°C"}
         value={21.25}
-        content={""}
-        color={""}
+        color={"#52b202"}
       />
     </div>
   );

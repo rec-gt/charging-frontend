@@ -1,24 +1,38 @@
-import { Gauge } from "@mui/x-charts/Gauge";
+import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import React from "react";
 
 type GaugePlateProps = {
   title: string;
   value: number;
-  content: string;
+  text: string;
   color: string;
 };
 
 export const GaugePlate: React.FC<GaugePlateProps> = (props) => {
-  const { title, value, content, color } = props;
+  const { title, value, text, color } = props;
+
   return (
-    <div>
-      <div className="w-[100px] h-[100px]">
+    <div
+      className={`max-w-[150px] flex flex-col items-center rounded-xl border-[3px]`}
+      style={{ borderColor: color }}
+    >
+      <span>{title}</span>
+      <div className="w-full h-[75px]">
         <Gauge
+          text={text}
           value={value}
           startAngle={-110}
           endAngle={110}
           innerRadius="80%"
           outerRadius="100%"
+          sx={{
+            [`& .${gaugeClasses.valueText}`]: {
+              fontSize: 12,
+            },
+            [`& .${gaugeClasses.valueArc}`]: {
+              fill: color,
+            },
+          }}
         />
       </div>
     </div>
