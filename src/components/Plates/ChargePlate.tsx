@@ -1,22 +1,20 @@
-import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
+import PowerOffIcon from "@mui/icons-material/PowerOff";
+import PowerIcon from "@mui/icons-material/Power";
 import React from "react";
 import { Plate } from "./Plate";
 
 type ChargePlateProps = {
   title: string;
-  value: number;
-  text: string;
-  color: string;
+  isConnected: boolean;
   icon?: any;
 };
 
 export const ChargePlate: React.FC<ChargePlateProps> = (props) => {
-  const { title, value, text, color, icon } = props;
+  const { title, isConnected, icon } = props;
   return (
     <Plate title={title} icon={icon}>
-      <div className="w-full h-full">
-        Connected
-      </div>
+      {isConnected ? <PowerIcon /> : <PowerOffIcon />}
+      <div className="w-full h-full">Connected</div>
     </Plate>
   );
 };

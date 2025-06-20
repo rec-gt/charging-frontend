@@ -14,24 +14,22 @@ export const GaugePlate: React.FC<GaugePlateProps> = (props) => {
   const { title, value, text, color, icon } = props;
   return (
     <Plate title={title} icon={icon}>
-      <div className="w-full h-[75px]">
-        <Gauge
-          text={text}
-          value={value}
-          startAngle={-110}
-          endAngle={110}
-          innerRadius="80%"
-          outerRadius="100%"
-          sx={{
-            [`& .${gaugeClasses.valueText}`]: {
-              fontSize: 10,
-            },
-            [`& .${gaugeClasses.valueArc}`]: {
-              fill: color,
-            },
-          }}
-        />
-      </div>
+      <Gauge
+        text={text}
+        value={value}
+        startAngle={-110}
+        endAngle={110}
+        innerRadius="80%"
+        outerRadius="100%"
+        sx={{
+          [`& .${gaugeClasses.valueText}`]: {
+            fontSize: 10,
+          },
+          [`& .${gaugeClasses.valueArc}`]: {
+            fill: color,
+          },
+        }}
+      />
     </Plate>
   );
 };

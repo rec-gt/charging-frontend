@@ -38,10 +38,8 @@ export const Statistics: React.FC = () => {
       <div className="row-start-4 col-span-1 row-span-1">
         <ChargePlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
-          text={"8.5A"}
-          value={8.5}
-          color={"#ffa500"}
           icon={<ElectricBoltIcon fontSize="small" sx={{ color: "#ffa500" }} />}
+          isConnected={true}
         />
       </div>
       <div className="col-span-2 row-span-2">
