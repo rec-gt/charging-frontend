@@ -26,6 +26,11 @@ export const LANG_OBJ = {
       JP: "充電ステーションの温度",
       ZH_T: "充電站温度",
     },
+    CURRENT: {
+      EN: "Electricity Current",
+      JP: "充電ステーションの電流",
+      ZH_T: "充電站電流",
+    },
   },
 
   SYSTEM_TITLE: {

@@ -6,15 +6,17 @@ type GaugePlateProps = {
   value: number;
   text: string;
   color: string;
+  icon?: any;
 };
 
 export const GaugePlate: React.FC<GaugePlateProps> = (props) => {
-  const { title, value, text, color } = props;
+  const { title, value, text, color, icon } = props;
   return (
     <div
-      className={`max-w-[200px] flex flex-col items-center rounded-xl border-[2px] border-[#ccc]`}
+      className={`relative flex flex-col items-center rounded-xl border-[2px] border-[#ccc]`}
     >
       <span>{title}</span>
+      {icon && <div className="absolute top-0 right-0">{icon}</div>}
       <div className="w-full h-[75px]">
         <Gauge
           text={text}
