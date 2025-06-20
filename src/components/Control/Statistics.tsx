@@ -4,10 +4,10 @@ import EqualizerIcon from "@mui/icons-material/Equalizer";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { LANG, LANG_OBJ, postReq2 } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
 import { ChargePlate } from "../Plates/ChargePlate";
-import { useDispatch } from "react-redux";
 
 const defaultStats = {
   ambientTemp: 21.25,

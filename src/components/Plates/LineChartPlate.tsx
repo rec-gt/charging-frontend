@@ -1,7 +1,8 @@
 import "chart.js/auto";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Plate } from ".";
+import dayjs from "dayjs";
 
 type LineChartPlateProps = {
   title: string;
@@ -41,7 +42,16 @@ const options = {
 
 export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
   const { title, icon, data } = props;
-  const [currentTimestamp, setCurrentTimestamp] = useState(0);
+  const [currentTimestamp, setCurrentTimestamp] = useState("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTimestamp(dayjs().format("DD-MMM-YYYY HH:mm:ss"));
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <Plate title={title} icon={icon} timestamp={currentTimestamp}>
