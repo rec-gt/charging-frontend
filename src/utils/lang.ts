@@ -21,7 +21,7 @@ export const LANG_OBJ = {
       JP: "周囲温度",
       ZH_T: "環境温度",
     },
-    CHARGE_TEMP: {
+    STATION_TEMP: {
       EN: "Charging Station Temp.",
       JP: "充電ステーションの温度",
       ZH_T: "充電站温度",
@@ -35,6 +35,18 @@ export const LANG_OBJ = {
       EN: "Temperature Monitoring",
       JP: "温度監視",
       ZH_T: "温度監測",
+    },
+    CHART_LABEL: {
+      AMBIENT: {
+        EN: "Ambient Temp.",
+        JP: "周囲温度",
+        ZH_T: "環境温度",
+      },
+      STATION: {
+        EN: "Charging Station Temp.",
+        JP: "充電ステーションの温度",
+        ZH_T: "充電站温度",
+      },
     },
   },
 

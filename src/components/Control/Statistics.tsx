@@ -16,7 +16,7 @@ export const Statistics: React.FC = () => {
       </div>
       <div className="row-start-2 col-span-1 row-span-1">
         <GaugePlate
-          title={LANG(LANG_OBJ.GAUGE.CHARGE_TEMP)}
+          title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
           text={"23.5°C"}
           value={23.5}
           color={"#52b202"}
@@ -34,7 +34,7 @@ export const Statistics: React.FC = () => {
       </div>
       <div className="col-span-2 row-span-2">
         <LineChartPlate
-          title={LANG(LANG_OBJ.GAUGE.CHARGE_TEMP)}
+          title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
           value={0}
           text={""}
           color={""}

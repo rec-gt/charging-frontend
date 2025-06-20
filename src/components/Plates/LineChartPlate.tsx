@@ -21,8 +21,13 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
         <LineChart
           className="w-full h-full"
           series={[
-            { curve: "linear", data: [1, 5, 2, 6, 3, 9.3] },
-            { curve: "linear", data: [6, 3, 7, 9.5, 4, 2] },
+            {
+              curve: "linear",
+              data: [1, 5, 2, 6, 3, 9.3],
+              label: "Var A",
+              color: "#4c84ff",
+            },
+            { curve: "linear", data: [6, 3, 7, 9.5, 4, 2], label: "Var B" },
           ]}
         />
       </div>
