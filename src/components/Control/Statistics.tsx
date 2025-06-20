@@ -34,14 +34,41 @@ export const Statistics: React.FC = () => {
       </div>
       <div className="col-span-2 row-span-2">
         <LineChartPlate
-          title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
-          value={0}
-          text={""}
-          color={""}
+          title={LANG(LANG_OBJ.GAUGE.TEMP_MONITOR)}
+          series={[
+            {
+              curve: "linear",
+              data: [1, 5, 2, 6, 3, 9.3],
+              label: LANG(LANG_OBJ.GAUGE.CHART_LABEL.AMBIENT),
+              color: "#4c84ff",
+            },
+            {
+              curve: "linear",
+              data: [6, 3, 7, 9.5, 4, 2],
+              label: LANG(LANG_OBJ.GAUGE.CHART_LABEL.STATION),
+              color: "#52b202",
+            },
+          ]}
         />
       </div>
       <div className="col-span-2 row-span-1">
-        <LineChartPlate title={""} value={0} text={""} color={""} />
+        <LineChartPlate
+          title={LANG(LANG_OBJ.GAUGE.CURRENT_MONITOR)}
+          series={[
+            {
+              curve: "linear",
+              data: [1, 5, 2, 6, 3, 9.3],
+              label: LANG(LANG_OBJ.GAUGE.CHART_LABEL.AMBIENT),
+              color: "#4c84ff",
+            },
+            {
+              curve: "linear",
+              data: [6, 3, 7, 9.5, 4, 2],
+              label: LANG(LANG_OBJ.GAUGE.CHART_LABEL.STATION),
+              color: "#52b202",
+            },
+          ]}
+        />
       </div>
     </div>
   );

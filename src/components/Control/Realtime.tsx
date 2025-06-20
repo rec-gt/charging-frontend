@@ -39,12 +39,7 @@ export const Realtime: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col justify-start items-center gap-4 bg-(--color-secondary) h-[400px] pt-24  sm:h-[calc(100vh-6rem)]">
-      <div className="text-2xl">{LANG(LANG_OBJ.CURRENT_SITUATION_TEXT)}</div>
-      <img
-        className="w-[100px] h-[100px]"
-        src={HSWW_ICON_MAPPING[realtimeWarning]}
-      />
-      <div className="text-2xl">{HSWW_COLOR_MAPPING[realtimeWarning]}</div>
+  
     </div>
   );
 };

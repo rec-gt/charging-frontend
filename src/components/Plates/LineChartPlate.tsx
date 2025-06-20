@@ -1,16 +1,15 @@
 import { LineChart } from "@mui/x-charts/LineChart";
 import React from "react";
+import { LANG, LANG_OBJ } from "../../utils";
 
 type LineChartPlateProps = {
   title: string;
-  value: number;
-  text: string;
-  color: string;
   icon?: any;
+  series?: any;
 };
 
 export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
-  const { title, value, text, color, icon } = props;
+  const { title, icon, series } = props;
   return (
     <div className="w-full h-full flex flex-col items-center rounded-xl border-[2px] border-[#ccc]">
       <div className="relative w-full flex justify-between">
@@ -18,18 +17,7 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
         {icon && <div className="absolute top-0 right-0">{icon}</div>}
       </div>
       <div className="w-full h-full">
-        <LineChart
-          className="w-full h-full"
-          series={[
-            {
-              curve: "linear",
-              data: [1, 5, 2, 6, 3, 9.3],
-              label: "Var A",
-              color: "#4c84ff",
-            },
-            { curve: "linear", data: [6, 3, 7, 9.5, 4, 2], label: "Var B" },
-          ]}
-        />
+        <LineChart className="w-full h-full" series={series} />
       </div>
     </div>
   );
