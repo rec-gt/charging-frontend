@@ -10,11 +10,9 @@ type GaugePlateProps = {
 
 export const GaugePlate: React.FC<GaugePlateProps> = (props) => {
   const { title, value, text, color } = props;
-
   return (
     <div
-      className={`max-w-[150px] flex flex-col items-center rounded-xl border-[3px]`}
-      style={{ borderColor: color }}
+      className={`max-w-[150px] flex flex-col items-center rounded-xl border-[2px] border-[#ccc]`}
     >
       <span>{title}</span>
       <div className="w-full h-[75px]">
