@@ -1,6 +1,6 @@
 export const DemoPhoto: React.FC = () => {
   return (
-    <div className="p-4">
+    <div className="">
       <img src="/images/demo.png" />
     </div>
   );

@@ -10,11 +10,11 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-between items-center py-4 px-4 sm:px-24 w-full h-24 bg-(--color-secondary)">
+    <div className="flex justify-between items-center py-4 px-4 sm:px-16 w-full h-24 bg-(--color-secondary)">
       <img className="h-full object-contain" src="/images/logo.png" />
       <div className="flex flex-col items-center">
         <span>{LANG_OBJ.TITLE.JP}</span>
-        <span>{LANG_OBJ.TITLE.EN}</span>
+        {/* <span>{LANG_OBJ.TITLE.EN}</span> */}
         <span>{LANG_OBJ.TITLE.ZH_T}</span>
       </div>
       <div className="flex gap-2">
