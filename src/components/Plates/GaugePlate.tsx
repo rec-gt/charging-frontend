@@ -14,7 +14,7 @@ export const GaugePlate: React.FC<GaugePlateProps> = (props) => {
   return (
     <div className="flex flex-col items-center rounded-xl border-[2px] border-[#ccc]">
       <div className="relative w-full flex justify-between">
-        <div className="w-full">{title}</div>
+        <div className="px-4 w-full text-center">{title}</div>
         {icon && <div className="absolute top-0 right-0">{icon}</div>}
       </div>
       <div className="w-full h-[75px]">
@@ -27,7 +27,7 @@ export const GaugePlate: React.FC<GaugePlateProps> = (props) => {
           outerRadius="100%"
           sx={{
             [`& .${gaugeClasses.valueText}`]: {
-              fontSize: 12,
+              fontSize: 10,
             },
             [`& .${gaugeClasses.valueArc}`]: {
               fill: color,

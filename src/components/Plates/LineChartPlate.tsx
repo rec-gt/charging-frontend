@@ -1,4 +1,4 @@
-import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
+import { LineChart } from "@mui/x-charts/LineChart";
 import React from "react";
 
 type LineChartPlateProps = {
@@ -18,21 +18,14 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
         {icon && <div className="absolute top-0 right-0">{icon}</div>}
       </div>
       <div className="w-full h-[75px]">
-        <Gauge
-          text={text}
-          value={value}
-          startAngle={-110}
-          endAngle={110}
-          innerRadius="80%"
-          outerRadius="100%"
-          sx={{
-            [`& .${gaugeClasses.valueText}`]: {
-              fontSize: 12,
+        <LineChart
+          xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+          series={[
+            {
+              data: [2, 5.5, 2, 8.5, 1.5, 5],
             },
-            [`& .${gaugeClasses.valueArc}`]: {
-              fill: color,
-            },
-          }}
+          ]}
+          height={300}
         />
       </div>
     </div>

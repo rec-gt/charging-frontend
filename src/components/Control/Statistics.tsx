@@ -28,8 +28,8 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
           text={"8.5A"}
           value={8.5}
-          color={"#ffe438"}
-          icon={<ElectricBoltIcon fontSize="small" sx={{ color: "#ffe438" }} />}
+          color={"#ffa500"}
+          icon={<ElectricBoltIcon fontSize="small" sx={{ color: "#ffa500" }} />}
         />
       </div>
       <div className="col-span-2 row-span-2">4</div>
