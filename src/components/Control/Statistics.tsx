@@ -32,6 +32,7 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
           text={"8.5A"}
           value={8.5}
+          valueMax={13}
           color={"#ffa500"}
           icon={<ElectricBoltIcon sx={{ color: "#ffa500" }} />}
         />
