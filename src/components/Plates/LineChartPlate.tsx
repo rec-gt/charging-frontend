@@ -2,6 +2,7 @@ import "chart.js/auto";
 import dayjs from "dayjs";
 import React from "react";
 import { Line } from "react-chartjs-2";
+import { Plate } from ".";
 
 type LineChartPlateProps = {
   title: string;
@@ -56,11 +57,7 @@ const t2Series = Array.from({ length: 120 }, (_, i) => {
 export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
   const { title, icon, series, ...rest } = props;
   return (
-    <div className="w-full h-full flex flex-col items-center rounded-xl border-[2px] border-[#ccc]">
-      <div className="px-4 w-full text-center">{title}</div>
-      <div className="relative w-full flex justify-between">
-        {icon && <div className="absolute top-0 right-0">{icon}</div>}
-      </div>
+    <Plate title={title} icon={icon}>
       <div className="w-full h-full">
         <Line
           options={options}
@@ -87,6 +84,6 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
           }}
         />
       </div>
-    </div>
+    </Plate>
   );
 };
