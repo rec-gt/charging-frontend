@@ -9,9 +9,9 @@ export const Header: React.FC = () => {
 
   const handleSetLang = async (lang: LANG_ENUM) => {
     dispatch(setPageLoading(true));
-    setLang(lang);
     await sleep(1000);
     sessionStorage.setItem("LANGUAGE", lang);
+    setLang(lang);
     window.location.reload();
   };
 
