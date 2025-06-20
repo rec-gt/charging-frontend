@@ -27,6 +27,7 @@ const options = {
       ticks: {
         maxRotation: 0,
         minRotation: 0,
+        maxTicksLimit: 5,
       },
     },
   },

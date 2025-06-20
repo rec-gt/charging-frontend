@@ -7,7 +7,7 @@ import { ChargePlate } from "../Plates/ChargePlate";
 const isConnected = false;
 export const Statistics: React.FC = () => {
   return (
-    <div className="grid grid-cols-3 grid-rows-4 gap-2">
+    <div className="grid grid-cols-3 grid-rows-4 gap-2 min-h-[500px]">
       <div className="row-start-1 col-span-1 row-span-1">
         <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
