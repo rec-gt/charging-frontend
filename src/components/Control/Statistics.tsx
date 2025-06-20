@@ -6,8 +6,13 @@ import { LANG, LANG_OBJ } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
 import dayjs from "dayjs";
 import { ChargePlate } from "../Plates/ChargePlate";
-const isConnected = false;
+import { useState } from "react";
+
 export const Statistics: React.FC = () => {
+  const [isConnected, setIsConnected] = useState(true);
+  const [ambientTemps, setAmbientTemps] = useState([]);
+  const [stationTemps, setStationTemps] = useState([]);
+
   return (
     <div className="grid grid-cols-3 grid-rows-4 gap-2 h-[500px]">
       <div className="row-start-1 col-span-1 row-span-1">
