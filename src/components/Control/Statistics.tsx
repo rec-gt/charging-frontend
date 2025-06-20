@@ -4,9 +4,10 @@ import EqualizerIcon from "@mui/icons-material/Equalizer";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { LANG, LANG_OBJ } from "../../utils";
+import { LANG, LANG_OBJ, postReq2 } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
 import { ChargePlate } from "../Plates/ChargePlate";
+import { useDispatch } from "react-redux";
 
 const defaultStats = {
   ambientTemp: 21.25,
@@ -22,10 +23,10 @@ const defaultSeries = {
       .format("HH:mm:ss");
   }),
   ambient: Array.from({ length: 120 }, (_) => {
-    return 8 + Math.random() * 5;
+    return 22 + Math.random() * 5;
   }),
   station: Array.from({ length: 120 }, (_) => {
-    return 8 + Math.random() * 5;
+    return 22 + Math.random() * 5;
   }),
   current: Array.from({ length: 120 }, (_) => {
     return 8 + Math.random() * 5;
@@ -33,8 +34,18 @@ const defaultSeries = {
 };
 
 export const Statistics: React.FC = () => {
+  const dispatch = useDispatch();
+
   const [stats, setStats] = useState(defaultStats);
   const [series, setSeries] = useState(defaultSeries);
+
+  const handleGetStats = async () => {
+    await postReq2({ path: "/stats/get" }, dispatch);
+  };
+
+  const handleGetSeries = async () => {
+    await postReq2({ path: "/series/get" }, dispatch);
+  };
 
   useEffect(() => {
     setStats(defaultStats);
@@ -46,7 +57,7 @@ export const Statistics: React.FC = () => {
       <div className="row-start-1 col-span-1 row-span-1">
         <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
-          text={`${stats.ambientTemp} °C`}
+          text={`${stats.ambientTemp.toFixed(1)} °C`}
           value={stats.ambientTemp}
           color={"#4c84ff"}
           icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
@@ -55,7 +66,7 @@ export const Statistics: React.FC = () => {
       <div className="row-start-2 col-span-1 row-span-1">
         <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
-          text={`${stats.stationTemp} °C`}
+          text={`${stats.stationTemp.toFixed(1)} °C`}
           value={stats.stationTemp}
           color={"#52b202"}
           icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
@@ -64,7 +75,7 @@ export const Statistics: React.FC = () => {
       <div className="row-start-3 col-span-1 row-span-1">
         <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
-          text={`${stats.stationAmp} Amp`}
+          text={`${stats.stationAmp.toFixed(1)} Amp`}
           value={stats.stationAmp}
           valueMax={13}
           color={"#ffa500"}
