@@ -15,6 +15,17 @@ export const LANG_OBJ = {
     JP: "ポータブル電動工具充電ステーション IoT 温度および電流監視システム",
     ZH_T: "手提電工具充電站loT溫度及電流監控系統",
   },
+  GAUGE: {
+    AMBIENT_TEMP: {
+      EN: "Ambient Temperature",
+      JP: "周囲温度",
+      ZH_T: "環境温度",
+    },
+  },
+
+
+
+  
   SYSTEM_TITLE: {
     EN: "HSWW SYSTEM",
     JP: "",

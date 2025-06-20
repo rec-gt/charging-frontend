@@ -15,8 +15,8 @@ export const GaugePlate: React.FC<GaugePlateProps> = (props) => {
       <div className="w-[100px] h-[100px]">
         <Gauge
           value={value}
-          startAngle={0}
-          endAngle={300}
+          startAngle={-110}
+          endAngle={110}
           innerRadius="80%"
           outerRadius="100%"
         />
