@@ -10,7 +10,7 @@ export const PageLayout: React.FC<PageLayoutProps> = (props) => {
   return (
     <>
       <Header />
-      {children}
+      <div className="px-4 sm:px-24 w-full">{children}</div>
       <Footer />
     </>
   );
