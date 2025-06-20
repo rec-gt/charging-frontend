@@ -31,6 +31,11 @@ export const LANG_OBJ = {
       JP: "充電ステーションの電流",
       ZH_T: "充電站電流",
     },
+    TEMP_MONITOR: {
+      EN: "Temperature Monitoring",
+      JP: "温度監視",
+      ZH_T: "温度監測",
+    },
   },
 
   SYSTEM_TITLE: {

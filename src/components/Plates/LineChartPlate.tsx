@@ -12,20 +12,18 @@ type LineChartPlateProps = {
 export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
   const { title, value, text, color, icon } = props;
   return (
-    <div className="flex flex-col items-center rounded-xl border-[2px] border-[#ccc]">
+    <div className="w-full h-full flex flex-col items-center rounded-xl border-[2px] border-[#ccc]">
       <div className="relative w-full flex justify-between">
         <div className="w-full">{title}</div>
         {icon && <div className="absolute top-0 right-0">{icon}</div>}
       </div>
-      <div className="w-full h-[75px]">
+      <div className="w-full h-full">
         <LineChart
-          xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+          className="w-full h-full"
           series={[
-            {
-              data: [2, 5.5, 2, 8.5, 1.5, 5],
-            },
+            { curve: "linear", data: [1, 5, 2, 6, 3, 9.3] },
+            { curve: "linear", data: [6, 3, 7, 9.5, 4, 2] },
           ]}
-          height={300}
         />
       </div>
     </div>

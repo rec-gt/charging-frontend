@@ -1,7 +1,7 @@
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import { LANG, LANG_OBJ } from "../../utils";
-import { GaugePlate } from "../Plates";
+import { GaugePlate, LineChartPlate } from "../Plates";
 export const Statistics: React.FC = () => {
   return (
     <div className="grid grid-cols-3 grid-rows-3 gap-2">
@@ -32,8 +32,17 @@ export const Statistics: React.FC = () => {
           icon={<ElectricBoltIcon fontSize="small" sx={{ color: "#ffa500" }} />}
         />
       </div>
-      <div className="col-span-2 row-span-2">4</div>
-      <div className="col-span-2 row-span-1">5</div>
+      <div className="col-span-2 row-span-2">
+        <LineChartPlate
+          title={LANG(LANG_OBJ.GAUGE.CHARGE_TEMP)}
+          value={0}
+          text={""}
+          color={""}
+        />
+      </div>
+      <div className="col-span-2 row-span-1">
+        <LineChartPlate title={""} value={0} text={""} color={""} />
+      </div>
     </div>
   );
 };
