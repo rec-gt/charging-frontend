@@ -1,5 +1,5 @@
 import "chart.js/auto";
-import React from "react";
+import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Plate } from ".";
 
@@ -41,8 +41,10 @@ const options = {
 
 export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
   const { title, icon, data } = props;
+  const [currentTimestamp, setCurrentTimestamp] = useState(0);
+
   return (
-    <Plate title={title} icon={icon}>
+    <Plate title={title} icon={icon} timestamp={currentTimestamp}>
       <div className="w-full h-full">
         <Line options={options} data={data} />
       </div>
