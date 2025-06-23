@@ -34,6 +34,9 @@ const options = {
     },
   },
   maintainAspectRatio: false,
+  animation: {
+    duration: 0,
+  },
   plugins: {
     legend: {
       position: "top" as const,

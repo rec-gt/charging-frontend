@@ -57,6 +57,7 @@ export const Statistics: React.FC = () => {
       url: `${backendServer}/system/get/series`,
     })
       .then((res) => {
+        // console.log(res.data[0])
         setSeries(res.data);
       })
       .catch((err) => {
