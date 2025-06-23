@@ -2,7 +2,8 @@ import "chart.js/auto";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Plate } from ".";
-import dayjs from "dayjs";
+import moment from "moment";
+import "moment-timezone";
 
 type LineChartPlateProps = {
   title: string;
@@ -46,7 +47,8 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTimestamp(dayjs().format("DD-MMM-YYYY HH:mm:ss"));
+      const currentTime = moment().tz("Asia/Tokyo").format("HH:mm:ss");
+      setCurrentTimestamp(currentTime);
     }, 1000);
     return () => {
       clearInterval(interval);
