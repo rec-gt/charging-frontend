@@ -78,6 +78,8 @@ export const Statistics: React.FC = () => {
     };
   }, []);
 
+  const isAlert = stats.ST >= 80 || stats.AT >= 80;
+
   return (
     <div className="grid grid-cols-3 grid-rows-4 gap-2 h-[600px]">
       <div className="row-start-1 col-span-1 row-span-1">
@@ -85,6 +87,7 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
           text={`${stats.AT.toFixed(1)} °C`}
           icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
+          isAlert={isAlert}
         />
         {/* <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
@@ -99,6 +102,7 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
           text={`${stats.ST.toFixed(1)} °C`}
           icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
+          isAlert={isAlert}
         />
         {/* <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
@@ -113,6 +117,7 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
           text={`${stats.A.toFixed(1)} Amp`}
           icon={<ElectricBoltIcon sx={{ color: "#ffa500" }} />}
+          isAlert={isAlert}
         />
         {/* <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
@@ -160,7 +165,7 @@ export const Statistics: React.FC = () => {
               y: {
                 beginAtZero: true,
                 min: 0,
-                max: 80,
+                max: 100,
               },
               x: {
                 ticks: {
@@ -194,7 +199,7 @@ export const Statistics: React.FC = () => {
               y: {
                 beginAtZero: true,
                 min: 0,
-                max: 16,
+                max: 20,
               },
               x: {
                 ticks: {
