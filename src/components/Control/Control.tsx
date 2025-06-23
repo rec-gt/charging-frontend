@@ -6,7 +6,7 @@ export const ControlPage: React.FC = () => {
   return (
     <PageLayout>
       <div className="flex flex-col gap-2 justify-between sm:flex-row min-h-[calc(650px+60px)]">
-        <div className="flex-2">
+        <div className="flex-1">
           <Statistics />
         </div>
       </div>
