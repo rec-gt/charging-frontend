@@ -9,9 +9,10 @@ type LineChartPlateProps = {
   title: string;
   icon?: any;
   data?: any;
+  options?: any;
 } & any;
 
-const options = {
+const globalOptions = {
   responsive: true,
   elements: {
     point: {
@@ -19,18 +20,6 @@ const options = {
     },
     line: {
       tension: 0.2,
-    },
-  },
-  scales: {
-    y: {
-      beginAtZero: true,
-    },
-    x: {
-      ticks: {
-        maxRotation: 0,
-        minRotation: 0,
-        maxTicksLimit: 5,
-      },
     },
   },
   maintainAspectRatio: false,
@@ -45,7 +34,7 @@ const options = {
 };
 
 export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
-  const { title, icon, data } = props;
+  const { title, icon, data, options } = props;
   const [currentTimestamp, setCurrentTimestamp] = useState("");
 
   useEffect(() => {
@@ -61,7 +50,7 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
   return (
     <Plate title={title} icon={icon} timestamp={currentTimestamp}>
       <div className="w-full h-full">
-        <Line options={options} data={data} />
+        <Line options={{ ...globalOptions, ...options }} data={data} />
       </div>
     </Plate>
   );

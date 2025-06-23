@@ -143,8 +143,16 @@ export const Statistics: React.FC = () => {
           options={{
             scales: {
               y: {
+                beginAtZero: true,
                 min: 0,
                 max: 80,
+              },
+              x: {
+                ticks: {
+                  maxRotation: 0,
+                  minRotation: 0,
+                  maxTicksLimit: 5,
+                },
               },
             },
           }}
@@ -169,8 +177,16 @@ export const Statistics: React.FC = () => {
           options={{
             scales: {
               y: {
+                beginAtZero: true,
                 min: 0,
-                max: 15,
+                max: 16,
+              },
+              x: {
+                ticks: {
+                  maxRotation: 0,
+                  minRotation: 0,
+                  maxTicksLimit: 5,
+                },
               },
             },
           }}
