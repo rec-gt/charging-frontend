@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { LANG, LANG_ENUM, LANG_OBJ, sleep } from "../../utils";
 import { useDispatch } from "react-redux";
 import { setPageLoading } from "../../state/pageLoadingSlice";
+import { LANG_ENUM, LANG_OBJ, sleep } from "../../utils";
 
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,10 +18,6 @@ export const Header: React.FC = () => {
   return (
     <div className="flex justify-between items-center py-4 px-4 sm:px-16 w-full h-24 bg-(--color-secondary)">
       <img className="h-full object-contain" src="/images/logo.png" />
-      <div className="flex flex-col items-center text-center">
-        <span>{LANG_OBJ.TITLE.JP}</span>
-        {lang !== LANG_ENUM.JP && <span>{LANG(LANG_OBJ.TITLE)}</span>}
-      </div>
       <div className="flex gap-2">
         {Object.values(LANG_ENUM).map((e) => {
           return (
