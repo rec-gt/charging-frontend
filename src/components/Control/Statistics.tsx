@@ -140,6 +140,14 @@ export const Statistics: React.FC = () => {
               },
             ],
           }}
+          options={{
+            scales: {
+              y: {
+                min: 0,
+                max: 80,
+              },
+            },
+          }}
         />
       </div>
       <div className="col-span-2 row-span-2">
@@ -157,6 +165,14 @@ export const Statistics: React.FC = () => {
                 data: series.current,
               },
             ],
+          }}
+          options={{
+            scales: {
+              y: {
+                min: 0,
+                max: 15,
+              },
+            },
           }}
         />
       </div>
