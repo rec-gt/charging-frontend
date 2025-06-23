@@ -81,7 +81,7 @@ export const Statistics: React.FC = () => {
   const isAlert = stats.ST >= 80 || stats.AT >= 80;
 
   return (
-    <div className="grid grid-cols-2 grid-rows-6 h-[800px] sm:grid-cols-3 sm:grid-rows-4 sm:h-[500px] gap-2 mb-4">
+    <div className="grid grid-cols-2 grid-rows-6 h-[800px] sm:grid-cols-3 sm:grid-rows-4 sm:h-[600px] gap-2 mb-4">
       <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
