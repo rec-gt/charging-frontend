@@ -31,12 +31,12 @@ function App() {
     {
       path: "/admin/control",
       element: <ControlPage />,
-      allowed: [USER_ROLE.GUEST],
+      allowed: [USER_ROLE.GUEST, USER_ROLE.ADMIN],
     },
     {
       path: "/admin/debug",
       element: <ControlPage />,
-      allowed: [USER_ROLE.GUEST],
+      allowed: [USER_ROLE.GUEST, USER_ROLE.ADMIN],
     },
   ];
 

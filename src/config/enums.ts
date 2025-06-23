@@ -2,6 +2,7 @@ export enum USER_ROLE {
   PLAYER = "PLAYER",
   MERCHANT = "MERCHANT",
   GUEST = "GUEST",
+  ADMIN = "ADMIN",
 }
 
 export enum GAME_NAMES {

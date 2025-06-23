@@ -2,9 +2,11 @@ import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
+import axios from "axios";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { backendServer } from "../../config";
 import { LANG, LANG_OBJ, postReq2 } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
 import { ChargePlate } from "../Plates/ChargePlate";
@@ -44,16 +46,28 @@ export const Statistics: React.FC = () => {
   };
 
   const handleGetSeries = async () => {
-    await postReq2({ path: "/system/get/series" }, dispatch);
+    await axios({
+      method: "POST",
+      url: `${backendServer}/system/get/series`,
+    }).then((res) => {
+      setSeries(res.data);
+    });
   };
 
   useEffect(() => {
     setStats(defaultStats);
     setSeries(defaultSeries);
+
+    const interval = setInterval(() => {
+      handleGetSeries();
+    }, 3000);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
-    <div className="grid grid-cols-3 grid-rows-4 gap-2 h-[500px]">
+    <div className="grid grid-cols-3 grid-rows-4 gap-2 h-[600px]">
       <div className="row-start-1 col-span-1 row-span-1">
         <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
