@@ -5,17 +5,16 @@ import ThermostatIcon from "@mui/icons-material/Thermostat";
 import axios from "axios";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { backendServer } from "../../config";
-import { LANG, LANG_OBJ, postReq2 } from "../../utils";
+import { LANG, LANG_OBJ } from "../../utils";
 import { GaugePlate, LineChartPlate } from "../Plates";
 import { ChargePlate } from "../Plates/ChargePlate";
 
 const defaultStats = {
-  ambientTemp: 21.25,
-  stationTemp: 32.5,
-  stationAmp: 8.53,
-  isConnected: true,
+  AT: 21.25,
+  ST: 32.5,
+  A: 8.53,
+  C: 1,
 };
 
 const defaultSeries = {
@@ -36,22 +35,33 @@ const defaultSeries = {
 };
 
 export const Statistics: React.FC = () => {
-  const dispatch = useDispatch();
-
   const [stats, setStats] = useState(defaultStats);
   const [series, setSeries] = useState(defaultSeries);
 
   const handleGetStats = async () => {
-    await postReq2({ path: "/system/get/stats" }, dispatch);
+    await axios({
+      method: "POST",
+      url: `${backendServer}/system/get/stats`,
+    })
+      .then((res) => {
+        setStats(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleGetSeries = async () => {
     await axios({
       method: "POST",
       url: `${backendServer}/system/get/series`,
-    }).then((res) => {
-      setSeries(res.data);
-    });
+    })
+      .then((res) => {
+        setSeries(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -59,6 +69,7 @@ export const Statistics: React.FC = () => {
     setSeries(defaultSeries);
 
     const interval = setInterval(() => {
+      handleGetStats();
       handleGetSeries();
     }, 3000);
     return () => {
@@ -71,8 +82,8 @@ export const Statistics: React.FC = () => {
       <div className="row-start-1 col-span-1 row-span-1">
         <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
-          text={`${stats.ambientTemp.toFixed(1)} °C`}
-          value={stats.ambientTemp}
+          text={`${stats.AT.toFixed(1)} °C`}
+          value={stats.AT}
           color={"#4c84ff"}
           icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
         />
@@ -80,8 +91,8 @@ export const Statistics: React.FC = () => {
       <div className="row-start-2 col-span-1 row-span-1">
         <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
-          text={`${stats.stationTemp.toFixed(1)} °C`}
-          value={stats.stationTemp}
+          text={`${stats.ST.toFixed(1)} °C`}
+          value={stats.ST}
           color={"#52b202"}
           icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
         />
@@ -89,8 +100,8 @@ export const Statistics: React.FC = () => {
       <div className="row-start-3 col-span-1 row-span-1">
         <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
-          text={`${stats.stationAmp.toFixed(1)} Amp`}
-          value={stats.stationAmp}
+          text={`${stats.A.toFixed(1)} Amp`}
+          value={stats.A}
           valueMax={13}
           color={"#ffa500"}
           icon={<ElectricBoltIcon sx={{ color: "#ffa500" }} />}
@@ -98,11 +109,9 @@ export const Statistics: React.FC = () => {
       </div>
       <div className="row-start-4 col-span-1 row-span-1">
         <ChargePlate
-          title={LANG(
-            stats.isConnected ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF
-          )}
+          title={LANG(stats.C ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF)}
           icon={<ElectricalServicesIcon />}
-          isConnected={stats.isConnected}
+          isCharging={Boolean(stats.C === 1)}
         />
       </div>
       <div className="col-span-2 row-span-2">
