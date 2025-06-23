@@ -81,8 +81,8 @@ export const Statistics: React.FC = () => {
   const isAlert = stats.ST >= 80 || stats.AT >= 80;
 
   return (
-    <div className="grid sm:grid-cols-3 sm:grid-rows-4 sm:gap-2 h-[600px]">
-      <div className="row-start-1 col-span-1 row-span-1">
+    <div className="grid grid-cols-2 grid-rows-6 h-[800px] sm:grid-cols-3 sm:grid-rows-4 sm:h-[600px] gap-2 mb-4">
+      <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
           text={`${stats.AT.toFixed(1)} °C`}
@@ -97,7 +97,7 @@ export const Statistics: React.FC = () => {
           icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
         /> */}
       </div>
-      <div className="row-start-2 col-span-1 row-span-1">
+      <div className="row-start-1 col-start-2 sm:row-start-2 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
           text={`${stats.ST.toFixed(1)} °C`}
@@ -112,7 +112,7 @@ export const Statistics: React.FC = () => {
           icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
         /> */}
       </div>
-      <div className="row-start-3 col-span-1 row-span-1">
+      <div className="row-start-2 col-start-1 sm:row-start-3 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
           text={`${stats.A.toFixed(1)} Amp`}
@@ -128,7 +128,7 @@ export const Statistics: React.FC = () => {
           icon={<ElectricBoltIcon sx={{ color: "#ffa500" }} />}
         /> */}
       </div>
-      <div className="row-start-4 col-span-1 row-span-1">
+      <div className="row-start-2 col-start-2 sm:row-start-4 sm:col-start-1 col-span-1 row-span-1">
         <ChargePlate
           title={LANG(stats.C ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF)}
           icon={<ElectricalServicesIcon />}
