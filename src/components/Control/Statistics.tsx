@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { backendServer } from "../../config";
 import { LANG, LANG_OBJ } from "../../utils";
-import { GaugePlate, LineChartPlate } from "../Plates";
+import { GaugePlate, LineChartPlate, TextPlate } from "../Plates";
 import { ChargePlate } from "../Plates/ChargePlate";
 
 const defaultStats = {
@@ -81,32 +81,47 @@ export const Statistics: React.FC = () => {
   return (
     <div className="grid grid-cols-3 grid-rows-4 gap-2 h-[600px]">
       <div className="row-start-1 col-span-1 row-span-1">
-        <GaugePlate
+        <TextPlate
+          title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
+          text={`${stats.AT.toFixed(1)} °C`}
+          icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
+        />
+        {/* <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
           text={`${stats.AT.toFixed(1)} °C`}
           value={stats.AT}
           color={"#4c84ff"}
           icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
-        />
+        /> */}
       </div>
       <div className="row-start-2 col-span-1 row-span-1">
-        <GaugePlate
+        <TextPlate
+          title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
+          text={`${stats.ST.toFixed(1)} °C`}
+          icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
+        />
+        {/* <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
           text={`${stats.ST.toFixed(1)} °C`}
           value={stats.ST}
           color={"#52b202"}
           icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
-        />
+        /> */}
       </div>
       <div className="row-start-3 col-span-1 row-span-1">
-        <GaugePlate
+        <TextPlate
+          title={LANG(LANG_OBJ.GAUGE.CURRENT)}
+          text={`${stats.A.toFixed(1)} Amp`}
+          icon={<ElectricBoltIcon sx={{ color: "#ffa500" }} />}
+        />
+        {/* <GaugePlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
           text={`${stats.A.toFixed(1)} Amp`}
           value={stats.A}
           valueMax={13}
           color={"#ffa500"}
           icon={<ElectricBoltIcon sx={{ color: "#ffa500" }} />}
-        />
+        /> */}
       </div>
       <div className="row-start-4 col-span-1 row-span-1">
         <ChargePlate
