@@ -49,7 +49,7 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
 
   return (
     <Plate title={title} icon={icon} timestamp={currentTimestamp}>
-      <div className="w-full h-full">
+      <div className="w-full h-full px-2">
         <Line options={{ ...globalOptions, ...options }} data={data} />
       </div>
     </Plate>

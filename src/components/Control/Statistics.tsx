@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { backendServer } from "../../config";
 import { LANG, LANG_OBJ } from "../../utils";
-import { GaugePlate, LineChartPlate, TextPlate } from "../Plates";
+import { LineChartPlate, TextPlate } from "../Plates";
 import { ChargePlate } from "../Plates/ChargePlate";
 
 const defaultStats = {
@@ -72,7 +72,7 @@ export const Statistics: React.FC = () => {
     const interval = setInterval(() => {
       handleGetStats();
       handleGetSeries();
-    }, 3000);
+    }, 2000);
     return () => {
       clearInterval(interval);
     };
