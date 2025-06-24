@@ -12,7 +12,7 @@ export const Plate: React.FC<PlateProps> = (props) => {
   return (
     <div className="w-full h-full flex flex-col items-center rounded-xl border-[2px] border-[#ccc]">
       <div className="relative w-full flex justify-between">
-        <div className="px-4 pt-1 w-full text-center">{title}</div>
+        <div className="px-7 pt-1 w-full text-center">{title}</div>
         {timestamp && (
           <div className="absolute top-0 left-0 py-1 px-2">{timestamp}</div>
         )}
