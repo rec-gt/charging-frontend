@@ -57,7 +57,6 @@ export const Statistics: React.FC = () => {
       url: `${backendServer}/system/get/series`,
     })
       .then((res) => {
-        // console.log(res.data[0])
         setSeries(res.data);
       })
       .catch((err) => {
@@ -85,7 +84,7 @@ export const Statistics: React.FC = () => {
       <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
-          text={`${stats.AT.toFixed(1)} °C`}
+          text={`${stats.AT.toFixed(1)}°C (≤80°C)`}
           icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
           isAlert={isAlert}
         />
@@ -93,7 +92,7 @@ export const Statistics: React.FC = () => {
       <div className="row-start-1 col-start-2 sm:row-start-2 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
-          text={`${stats.ST.toFixed(1)} °C`}
+          text={`${stats.ST.toFixed(1)}°C (≤80°C)`}
           icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
           isAlert={isAlert}
         />
