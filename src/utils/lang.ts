@@ -32,7 +32,7 @@ export const LANG_OBJ = {
       ZH_T: "充電站電流",
     },
     TEMP_MONITOR: {
-      EN: "Temperature Monitoring",
+      EN: "Temperature",
       JP: "温度監視",
       ZH_T: "温度監測",
     },
@@ -49,7 +49,7 @@ export const LANG_OBJ = {
       },
     },
     CURRENT_MONITOR: {
-      EN: "Current Monitoring",
+      EN: "Current",
       JP: "電流監視",
       ZH_T: "電流監測",
     },
