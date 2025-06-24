@@ -7,6 +7,7 @@ import {
   PageAlert,
   PageDialogBox,
   PageLoading,
+  SettingPage,
 } from "./components";
 import { USER_ROLE } from "./config";
 import { NotFound } from "./pages";
@@ -34,8 +35,8 @@ function App() {
       allowed: [USER_ROLE.GUEST, USER_ROLE.ADMIN],
     },
     {
-      path: "/admin/debug",
-      element: <ControlPage />,
+      path: "/admin/setting",
+      element: <SettingPage />,
       allowed: [USER_ROLE.GUEST, USER_ROLE.ADMIN],
     },
   ];

@@ -6,7 +6,6 @@ export * from "./Flex";
 export * from "./FormContainer";
 export * from "./Header";
 export * from "./InputField";
-export * from "./Title";
 export * from "./NotAvailable";
 export * from "./PageAlert";
 export * from "./PageDialogBox";
@@ -14,5 +13,8 @@ export * from "./PageLayout";
 export * from "./PageLoading";
 export * from "./Paginator";
 export * from "./SelectField";
+export * from "./SettingPage";
 export * from "./TabPage";
+export * from "./Title";
 export * from "./ToolBar";
+
