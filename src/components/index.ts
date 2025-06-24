@@ -6,6 +6,7 @@ export * from "./Flex";
 export * from "./FormContainer";
 export * from "./Header";
 export * from "./InputField";
+export * from "./Title";
 export * from "./NotAvailable";
 export * from "./PageAlert";
 export * from "./PageDialogBox";

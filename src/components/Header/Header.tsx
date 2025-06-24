@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setPageLoading } from "../../state/pageLoadingSlice";
 import { LANG_ENUM, LANG_OBJ, sleep } from "../../utils";
+import { SystemTitle } from "../Title";
 
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,9 @@ export const Header: React.FC = () => {
   return (
     <div className="flex justify-between items-center py-4 px-4 sm:px-24 w-full h-24 bg-(--color-secondary)">
       <img className="h-full object-contain" src="/images/logo.png" />
+      <div className="w-full hidden sm:block">
+        <SystemTitle />
+      </div>
       <div className="flex gap-2">
         {Object.values(LANG_ENUM).map((e) => {
           return (
