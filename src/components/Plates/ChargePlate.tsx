@@ -15,9 +15,15 @@ export const ChargePlate: React.FC<ChargePlateProps> = (props) => {
     <Plate title={title} icon={icon}>
       <div className="w-[40px] h-full flex justify-center items-center">
         {isCharging ? (
-          <PowerIcon sx={{ fill: "#52b202", transform: "scale(2.5)" }} />
+          <PowerIcon
+            className="scale-[1.5] sm:scale-[2.5]"
+            sx={{ fill: "#52b202" }}
+          />
         ) : (
-          <PowerOffIcon sx={{ fill: "#FF0000", transform: "scale(2.5)" }} />
+          <PowerOffIcon
+            className="scale-[1.5] sm:scale-[2.5]"
+            sx={{ fill: "#ff0000" }}
+          />
         )}
       </div>
     </Plate>

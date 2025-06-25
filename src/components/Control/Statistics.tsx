@@ -89,7 +89,7 @@ export const Statistics: React.FC = () => {
   const isAlert = stats.ST >= stats.SPT || stats.AT >= stats.SPT;
 
   return (
-    <div className="grid grid-cols-2 grid-rows-9 h-[800px] sm:grid-cols-3 sm:grid-rows-6 sm:h-[600px] gap-2 mb-4">
+    <div className="grid grid-cols-2 grid-rows-9 h-[1000px] sm:grid-cols-3 sm:grid-rows-6 sm:h-[650px] gap-2 mb-4">
       <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.CHARGING.MODE.TITLE)}

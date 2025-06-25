@@ -88,7 +88,7 @@ export const LANG_OBJ = {
       },
     },
     THRESHOLD: {
-      EN: "Threshold",
+      EN: "Threshold Temp.",
       JP: "臨界温度",
       ZH_T: "臨界溫度",
     },
