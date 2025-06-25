@@ -61,7 +61,7 @@ export const LANG_OBJ = {
       ZH_T: "充電中",
     },
     OFF: {
-      EN: "Power Charging Stopped",
+      EN: "Charging Stopped",
       JP: "充電を停止",
       ZH_T: "停止充電",
     },
@@ -92,71 +92,6 @@ export const LANG_OBJ = {
       JP: "臨界温度",
       ZH_T: "臨界溫度",
     },
-  },
-
-  SYSTEM_TITLE: {
-    EN: "HSWW SYSTEM",
-    JP: "",
-    ZH_T: "暑熱天氣警報系統",
-  },
-  HSWW_AMBER_OUTDOOR: {
-    EN: "ISSUE AMBER WARNING (OUTDOOR)",
-    JP: "",
-    ZH_T: "發出黃色警報 (戶外)",
-  },
-  HSWW_RED_OUTDOOR: {
-    EN: "ISSUE RED WARNING (OUTDOOR)",
-    JP: "",
-    ZH_T: "發出紅色警報 (戶外)",
-  },
-  HSWW_BLACK_OUTDOOR: {
-    EN: "ISSUE BLACK WARNING (OUTDOOR)",
-    JP: "",
-    ZH_T: "發出黑色警報 (戶外)",
-  },
-  HSWW_CANCEL_OUTDOOR: {
-    EN: "CANCEL WARNING",
-    JP: "",
-    ZH_T: "取消警報",
-  },
-  HSWW_AMBER_INDOOR: {
-    EN: "ISSUE AMBER WARNING (INDOOR)",
-    JP: "",
-    ZH_T: "發出黃色警報 (室内)",
-  },
-  HSWW_RED_INDOOR: {
-    EN: "ISSUE RED WARNING (INDOOR)",
-    JP: "",
-    ZH_T: "發出紅色警報 (室内)",
-  },
-  HSWW_BLACK_INDOOR: {
-    EN: "ISSUE BLACK WARNING (INDOOR)",
-    JP: "",
-    ZH_T: "發出黑色警報 (室内)",
-  },
-  HSWW_CANCEL_INDOOR: {
-    EN: "CANCEL WARNING",
-    JP: "",
-    ZH_T: "取消警報",
-  },
-  SYSTEM_MODE: {
-    AUTO: {
-      EN: "AUTO MODE",
-      JP: "",
-      ZH_T: "自動模式",
-    },
-    MANUAL: {
-      EN: "MANUAL MODE",
-      JP: "",
-      ZH_T: "手動模式",
-    },
-  },
-  CURRENT_SITUATION_TEXT: { EN: "", JP: "", ZH_T: "目前暑熱天氣警報" },
-  WARNING_COLOR: {
-    AMBER: { EN: "AMBER", JP: "", ZH_T: "黃" },
-    RED: { EN: "RED", JP: "", ZH_T: "紅" },
-    BLACK: { EN: "BLACK", JP: "", ZH_T: "黑" },
-    CANCEL: { EN: "CANCEL", JP: "", ZH_T: "取消" },
   },
 };
 
