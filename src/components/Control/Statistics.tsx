@@ -9,12 +9,16 @@ import { backendServer } from "../../config";
 import { LANG, LANG_OBJ } from "../../utils";
 import { LineChartPlate, TextPlate } from "../Plates";
 import { ChargePlate } from "../Plates/ChargePlate";
+import { useDispatch } from "react-redux";
+import { setPageLoading } from "../../state/pageLoadingSlice";
 
 const defaultStats = {
   AT: 21.25,
   ST: 32.5,
   A: 8.53,
   C: 1,
+  SPT: 80,
+  S: 0,
 };
 
 const defaultSeries = {
@@ -35,6 +39,7 @@ const defaultSeries = {
 };
 
 export const Statistics: React.FC = () => {
+  const dispatch = useDispatch();
   const [stats, setStats] = useState(defaultStats);
   const [series, setSeries] = useState(defaultSeries);
 
@@ -58,6 +63,7 @@ export const Statistics: React.FC = () => {
     })
       .then((res) => {
         setSeries(res.data);
+        dispatch(setPageLoading(false));
       })
       .catch((err) => {
         console.log(err);
@@ -65,6 +71,7 @@ export const Statistics: React.FC = () => {
   };
 
   useEffect(() => {
+    dispatch(setPageLoading(true));
     setStats(defaultStats);
     setSeries(defaultSeries);
 
@@ -72,19 +79,20 @@ export const Statistics: React.FC = () => {
       handleGetStats();
       handleGetSeries();
     }, 2000);
+
     return () => {
       clearInterval(interval);
     };
   }, []);
 
-  const isAlert = stats.ST >= 80 || stats.AT >= 80;
+  const isAlert = stats.ST >= stats.SPT || stats.AT >= stats.SPT;
 
   return (
     <div className="grid grid-cols-2 grid-rows-6 h-[800px] sm:grid-cols-3 sm:grid-rows-4 sm:h-[600px] gap-2 mb-4">
       <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
-          text={`${stats.AT.toFixed(1)}°C (≤80°C)`}
+          text={`${stats.AT.toFixed(1)}°C (≤ ${stats.SPT.toFixed(0)}°C)`}
           icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
           isAlert={isAlert}
         />
@@ -92,7 +100,7 @@ export const Statistics: React.FC = () => {
       <div className="row-start-1 col-start-2 sm:row-start-2 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
-          text={`${stats.ST.toFixed(1)}°C (≤80°C)`}
+          text={`${stats.ST.toFixed(1)}°C (≤ ${stats.SPT.toFixed(0)}°C)`}
           icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
           isAlert={isAlert}
         />
