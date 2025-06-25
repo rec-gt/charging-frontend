@@ -18,7 +18,7 @@ export const TextPlate: React.FC<TextPlateProps> = (props) => {
         }`}
       >
         {text}
-        {isAlert ? "⚠️" : ""}
+        {isAlert ? " ⚠️" : ""}
       </div>
     </Plate>
   );
