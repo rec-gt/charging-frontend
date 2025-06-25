@@ -148,10 +148,11 @@ export const Statistics: React.FC = () => {
               {
                 label: "臨界溫度",
                 backgroundColor: "#ff0000",
-                hoverBackgroundColor: "#ff000080",
+                hoverBackgroundColor: "#ff0000",
                 borderWidth: 1.5,
                 borderColor: "#ff0000",
-                borderDash: [5, 5],
+                borderDash: [10, 10],
+                pointRadius: 0,
                 data: Array.from(
                   { length: series.time.length },
                   (_) => stats.SPT
