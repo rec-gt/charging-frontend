@@ -13,7 +13,7 @@ export const TextPlate: React.FC<TextPlateProps> = (props) => {
   return (
     <Plate title={title} icon={icon} {...rest}>
       <div
-        className={`flex justify-center items-center h-full text-[clamp(15pt,3cqw,26pt)]! ${
+        className={`flex justify-center items-center h-full text-[clamp(15pt,3cqw,26pt)]! pb-2 ${
           isAlert ? "text-[#ff0000]" : "text-[#000]"
         }`}
       >

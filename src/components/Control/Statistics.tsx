@@ -1,16 +1,17 @@
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
+import SettingsIcon from "@mui/icons-material/Settings";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import axios from "axios";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { backendServer } from "../../config";
+import { setPageLoading } from "../../state/pageLoadingSlice";
 import { LANG, LANG_OBJ } from "../../utils";
 import { LineChartPlate, TextPlate } from "../Plates";
 import { ChargePlate } from "../Plates/ChargePlate";
-import { useDispatch } from "react-redux";
-import { setPageLoading } from "../../state/pageLoadingSlice";
 
 const defaultStats = {
   AT: 21.25,
@@ -88,24 +89,41 @@ export const Statistics: React.FC = () => {
   const isAlert = stats.ST >= stats.SPT || stats.AT >= stats.SPT;
 
   return (
-    <div className="grid grid-cols-2 grid-rows-6 h-[800px] sm:grid-cols-3 sm:grid-rows-4 sm:h-[600px] gap-2 mb-4">
+    <div className="grid grid-cols-2 grid-rows-9 h-[800px] sm:grid-cols-3 sm:grid-rows-6 sm:h-[600px] gap-2 mb-4">
       <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
-          title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
-          text={`${stats.AT.toFixed(1)}°C (≤ ${stats.SPT.toFixed(0)}°C)`}
-          icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
-          isAlert={isAlert}
+          title={"工作模式"}
+          text={`運作中`}
+          icon={<SettingsIcon sx={{ color: "#555" }} />}
+          isAlert={false}
         />
       </div>
       <div className="row-start-1 col-start-2 sm:row-start-2 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
+          title={"臨界溫度"}
+          text={`≥ ${stats.SPT.toFixed(0)} °C`}
+          icon={<ThermostatIcon sx={{ color: "#ff0000" }} />}
+          isAlert={false}
+        />
+      </div>
+
+      <div className="row-start-2 col-start-1 sm:row-start-3 sm:col-start-1 col-span-1 row-span-1">
+        <TextPlate
+          title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
+          text={`${stats.AT.toFixed(1)} °C`}
+          icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
+          isAlert={isAlert}
+        />
+      </div>
+      <div className="row-start-2 col-start-2 sm:row-start-4 sm:col-start-1 col-span-1 row-span-1">
+        <TextPlate
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
-          text={`${stats.ST.toFixed(1)}°C (≤ ${stats.SPT.toFixed(0)}°C)`}
+          text={`${stats.ST.toFixed(1)} °C`}
           icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
           isAlert={isAlert}
         />
       </div>
-      <div className="row-start-2 col-start-1 sm:row-start-3 sm:col-start-1 col-span-1 row-span-1">
+      <div className="row-start-3 col-start-1 sm:row-start-5 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
           text={`${stats.A.toFixed(1)} Amp`}
@@ -113,14 +131,14 @@ export const Statistics: React.FC = () => {
           isAlert={isAlert}
         />
       </div>
-      <div className="row-start-2 col-start-2 sm:row-start-4 sm:col-start-1 col-span-1 row-span-1">
+      <div className="row-start-3 col-start-2 sm:row-start-6 sm:col-start-1 col-span-1 row-span-1">
         <ChargePlate
           title={LANG(stats.C ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF)}
           icon={<ElectricalServicesIcon sx={{ color: "#555" }} />}
           isCharging={Boolean(stats.C === 1)}
         />
       </div>
-      <div className="col-span-2 row-span-2">
+      <div className="col-span-2 row-span-3">
         <LineChartPlate
           title={LANG(LANG_OBJ.GAUGE.TEMP_MONITOR)}
           icon={<EqualizerIcon sx={{ color: "#555" }} />}
@@ -163,7 +181,7 @@ export const Statistics: React.FC = () => {
           }}
         />
       </div>
-      <div className="col-span-2 row-span-2">
+      <div className="col-span-2 row-span-3">
         <LineChartPlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT_MONITOR)}
           icon={<EqualizerIcon sx={{ color: "#555" }} />}
