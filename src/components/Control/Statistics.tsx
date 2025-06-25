@@ -92,8 +92,14 @@ export const Statistics: React.FC = () => {
     <div className="grid grid-cols-2 grid-rows-9 h-[800px] sm:grid-cols-3 sm:grid-rows-6 sm:h-[600px] gap-2 mb-4">
       <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
-          title={"工作模式"}
-          text={`運作中`}
+          title={LANG(LANG_OBJ.CHARGING.MODE.TITLE)}
+          text={
+            [
+              LANG(LANG_OBJ.CHARGING.MODE.RUNNING),
+              LANG(LANG_OBJ.CHARGING.MODE.STOPPED),
+              LANG(LANG_OBJ.CHARGING.MODE.BYPASS),
+            ][stats.S]
+          }
           icon={<SettingsIcon sx={{ color: "#555" }} />}
           isAlert={false}
         />

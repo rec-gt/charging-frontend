@@ -71,7 +71,21 @@ export const LANG_OBJ = {
         JP: "作業モード",
         ZH_T: "工作模式",
       },
-      RUNNING: {},
+      RUNNING: {
+        EN: "Running",
+        JP: "ランニング",
+        ZH_T: "運作中",
+      },
+      STOPPED: {
+        EN: "Stopped",
+        JP: "停止",
+        ZH_T: "停止",
+      },
+      BYPASS: {
+        EN: "Maintenance",
+        JP: "メンテナンス",
+        ZH_T: "維護",
+      },
     },
     THRESHOLD: {
       EN: "Threshold",
