@@ -5,6 +5,7 @@ import { backendServer } from "../../config";
 import { PageLayout } from "../PageLayout";
 import { useDispatch } from "react-redux";
 import { setPageLoading } from "../../state/pageLoadingSlice";
+import { sleep } from "../../utils";
 
 const defaultStats = {
   SPT: null,
@@ -39,11 +40,13 @@ export const SettingPage: React.FC = () => {
     })
       .then((res) => {
         setSPT(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
+      .finally(async () => {
+        await sleep(300);
         dispatch(setPageLoading(false));
       });
   };
