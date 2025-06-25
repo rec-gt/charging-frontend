@@ -65,6 +65,19 @@ export const LANG_OBJ = {
       JP: "充電を停止",
       ZH_T: "停止充電",
     },
+    MODE: {
+      TITLE: {
+        EN: "Mode",
+        JP: "作業モード",
+        ZH_T: "工作模式",
+      },
+      RUNNING: {},
+    },
+    THRESHOLD: {
+      EN: "Threshold",
+      JP: "臨界温度",
+      ZH_T: "臨界溫度",
+    },
   },
 
   SYSTEM_TITLE: {

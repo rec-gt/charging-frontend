@@ -100,7 +100,7 @@ export const Statistics: React.FC = () => {
       </div>
       <div className="row-start-1 col-start-2 sm:row-start-2 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
-          title={"臨界溫度"}
+          title={LANG(LANG_OBJ.CHARGING.THRESHOLD)}
           text={`≥ ${stats.SPT.toFixed(0)} °C`}
           icon={<ThermostatIcon sx={{ color: "#ff0000" }} />}
           isAlert={false}
@@ -146,7 +146,7 @@ export const Statistics: React.FC = () => {
             labels: series.time,
             datasets: [
               {
-                label: "臨界溫度",
+                label: LANG(LANG_OBJ.CHARGING.THRESHOLD),
                 backgroundColor: "#ff0000",
                 hoverBackgroundColor: "#ff0000",
                 borderWidth: 1.5,
