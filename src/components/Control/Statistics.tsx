@@ -86,8 +86,6 @@ export const Statistics: React.FC = () => {
     };
   }, []);
 
-  const isAlert = stats.ST >= stats.SPT || stats.AT >= stats.SPT;
-
   return (
     <div className="grid grid-cols-2 grid-rows-9 h-[1000px] sm:grid-cols-3 sm:grid-rows-6 sm:h-[650px] gap-2 mb-4">
       <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
@@ -118,7 +116,7 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
           text={`${stats.AT.toFixed(1)} °C`}
           icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
-          isAlert={isAlert}
+          isAlert={stats.AT >= stats.SPT}
         />
       </div>
       <div className="row-start-2 col-start-2 sm:row-start-4 sm:col-start-1 col-span-1 row-span-1">
@@ -126,7 +124,7 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
           text={`${stats.ST.toFixed(1)} °C`}
           icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
-          isAlert={isAlert}
+          isAlert={stats.ST >= stats.SPT}
         />
       </div>
       <div className="row-start-3 col-start-1 sm:row-start-5 sm:col-start-1 col-span-1 row-span-1">
