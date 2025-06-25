@@ -191,7 +191,7 @@ export const Statistics: React.FC = () => {
                 ticks: {
                   maxRotation: 0,
                   minRotation: 0,
-                  maxTicksLimit: 5,
+                  maxTicksLimit: 7,
                 },
               },
             },
@@ -219,13 +219,13 @@ export const Statistics: React.FC = () => {
               y: {
                 beginAtZero: true,
                 min: 0,
-                max: 20,
+                max: 10,
               },
               x: {
                 ticks: {
                   maxRotation: 0,
                   minRotation: 0,
-                  maxTicksLimit: 5,
+                  maxTicksLimit: 7,
                 },
               },
             },
