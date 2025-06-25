@@ -134,7 +134,7 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
           text={`${stats.A.toFixed(1)} Amp`}
           icon={<ElectricBoltIcon sx={{ color: "#ffa500" }} />}
-          isAlert={isAlert}
+          isAlert={false}
         />
       </div>
       <div className="row-start-3 col-start-2 sm:row-start-6 sm:col-start-1 col-span-1 row-span-1">
