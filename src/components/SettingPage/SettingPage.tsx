@@ -44,7 +44,7 @@ export const SettingPage: React.FC = () => {
         console.log(err);
       })
       .finally(() => {
-        dispatch(setPageLoading(true));
+        dispatch(setPageLoading(false));
       });
   };
 
