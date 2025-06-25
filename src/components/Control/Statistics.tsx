@@ -146,6 +146,18 @@ export const Statistics: React.FC = () => {
             labels: series.time,
             datasets: [
               {
+                label: "臨界溫度",
+                backgroundColor: "#ff0000",
+                hoverBackgroundColor: "#ff000080",
+                borderWidth: 1.5,
+                borderColor: "#ff0000",
+                borderDash: [5, 5],
+                data: Array.from(
+                  { length: series.time.length },
+                  (_) => stats.SPT
+                ),
+              },
+              {
                 label: LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP),
                 backgroundColor: "#4c84ff",
                 hoverBackgroundColor: "#4c84ff80",
