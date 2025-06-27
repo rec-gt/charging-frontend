@@ -83,7 +83,7 @@ export const Statistics: React.FC = () => {
     const interval = setInterval(() => {
       handleGetStats();
       handleGetSeries();
-    }, 2000);
+    }, 1000);
 
     return () => {
       clearInterval(interval);

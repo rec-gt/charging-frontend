@@ -54,7 +54,7 @@ export const SettingPage: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       handleGetStats();
-    }, 2000);
+    }, 1000);
 
     return () => {
       clearInterval(interval);
