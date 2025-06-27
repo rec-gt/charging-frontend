@@ -145,7 +145,7 @@ export const Statistics: React.FC = () => {
             labels: series.time,
             datasets: [
               {
-                label: LANG(LANG_OBJ.CHARGING.THRESHOLD),
+                label: LANG(LANG_OBJ.CHARGING.THRESHOLD.TEMP),
                 backgroundColor: "#ff0000",
                 hoverBackgroundColor: "#ff0000",
                 borderWidth: 1.5,
@@ -200,6 +200,19 @@ export const Statistics: React.FC = () => {
           data={{
             labels: series.time,
             datasets: [
+              {
+                label: LANG(LANG_OBJ.CHARGING.THRESHOLD.CURRENT),
+                backgroundColor: "#ff0000",
+                hoverBackgroundColor: "#ff0000",
+                borderWidth: 1.5,
+                borderColor: "#ff0000",
+                borderDash: [10, 10],
+                pointRadius: 0,
+                data: Array.from(
+                  { length: series.time.length },
+                  (_) => stats.SPA
+                ),
+              },
               {
                 label: LANG(LANG_OBJ.GAUGE.CURRENT),
                 backgroundColor: "#ffa500",
