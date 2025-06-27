@@ -93,7 +93,7 @@ export const Statistics: React.FC = () => {
               LANG(LANG_OBJ.CHARGING.MODE.BYPASS),
             ][stats.M]
           }
-          icon={<SettingsIcon sx={{ color: "#555" }} />}
+          icon={<SettingsIcon sx={{ color: "#555", fontSize: "16pt" }} />}
           isAlert={false}
         />
       </div>
@@ -101,7 +101,7 @@ export const Statistics: React.FC = () => {
         <TextPlate
           title={LANG(LANG_OBJ.CHARGING.THRESHOLD)}
           text={`≥ ${stats.SPST.toFixed(0)} °C / ${stats.SPA.toFixed(0)} Amp`}
-          icon={<ThermostatIcon sx={{ color: "#ff0000" }} />}
+          icon={<ThermostatIcon sx={{ color: "#ff0000", fontSize: "16pt" }} />}
           isAlert={false}
         />
       </div>
@@ -110,7 +110,7 @@ export const Statistics: React.FC = () => {
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
           text={`${stats.AT.toFixed(1)} °C`}
-          icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
+          icon={<ThermostatIcon sx={{ color: "#4c84ff", fontSize: "16pt" }} />}
           isAlert={stats.AT >= stats.SPST}
         />
       </div>
@@ -118,7 +118,7 @@ export const Statistics: React.FC = () => {
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
           text={`${stats.ST.toFixed(1)} °C`}
-          icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
+          icon={<ThermostatIcon sx={{ color: "#52b202", fontSize: "16pt" }} />}
           isAlert={stats.ST >= stats.SPST}
         />
       </div>
@@ -126,21 +126,25 @@ export const Statistics: React.FC = () => {
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
           text={`${stats.A.toFixed(1)} Amp`}
-          icon={<ElectricBoltIcon sx={{ color: "#ffa500" }} />}
+          icon={
+            <ElectricBoltIcon sx={{ color: "#ffa500", fontSize: "16pt" }} />
+          }
           isAlert={false}
         />
       </div>
       <div className="row-start-3 col-start-2 sm:row-start-6 sm:col-start-1 col-span-1 row-span-1">
         <ChargePlate
           title={LANG(stats.C ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF)}
-          icon={<ElectricalServicesIcon sx={{ color: "#555" }} />}
+          icon={
+            <ElectricalServicesIcon sx={{ color: "#555", fontSize: "16pt" }} />
+          }
           isCharging={Boolean(stats.C === 1)}
         />
       </div>
       <div className="col-span-2 row-span-3">
         <LineChartPlate
           title={LANG(LANG_OBJ.GAUGE.TEMP_MONITOR)}
-          icon={<EqualizerIcon sx={{ color: "#555" }} />}
+          icon={<EqualizerIcon sx={{ color: "#555", fontSize: "16pt" }} />}
           data={{
             labels: series.time,
             datasets: [
@@ -196,7 +200,7 @@ export const Statistics: React.FC = () => {
       <div className="col-span-2 row-span-3">
         <LineChartPlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT_MONITOR)}
-          icon={<EqualizerIcon sx={{ color: "#555" }} />}
+          icon={<EqualizerIcon sx={{ color: "#555", fontSize: "16pt" }} />}
           data={{
             labels: series.time,
             datasets: [
