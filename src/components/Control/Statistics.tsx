@@ -1,3 +1,4 @@
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
@@ -92,6 +93,9 @@ export const Statistics: React.FC = () => {
               LANG(LANG_OBJ.CHARGING.MODE.STOPPED),
               LANG(LANG_OBJ.CHARGING.MODE.BYPASS),
             ][stats.M]
+          }
+          topLeftElement={
+            <ChangeCircleIcon sx={{ color: "#555", fontSize: "16pt" }} />
           }
           icon={<SettingsIcon sx={{ color: "#555", fontSize: "16pt" }} />}
           isAlert={false}
