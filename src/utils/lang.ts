@@ -88,9 +88,19 @@ export const LANG_OBJ = {
       },
     },
     THRESHOLD: {
-      EN: "Threshold Temp. / Current",
-      JP: "臨界温度 / 電流",
-      ZH_T: "臨界溫度 / 電流",
+      EN: "Threshold",
+      JP: "臨界温度/電流",
+      ZH_T: "臨界溫度/電流",
+      TEMP: {
+        EN: "Threshold Temp.",
+        JP: "臨界温度",
+        ZH_T: "臨界溫度",
+      },
+      CURRENT: {
+        EN: "Threshold Current",
+        JP: "臨界電流",
+        ZH_T: "臨界電流",
+      },
     },
   },
 };

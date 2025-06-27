@@ -100,7 +100,7 @@ export const Statistics: React.FC = () => {
       <div className="row-start-1 col-start-2 sm:row-start-2 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.CHARGING.THRESHOLD)}
-          text={`≥ ${stats.SPST.toFixed(0)} °C`}
+          text={`≥ ${stats.SPST.toFixed(0)} °C / ${stats.SPA.toFixed(0)} Amp`}
           icon={<ThermostatIcon sx={{ color: "#ff0000" }} />}
           isAlert={false}
         />
