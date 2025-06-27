@@ -19,6 +19,7 @@ const defaultStats = {
   A: 8.53,
   C: 1,
   SPST: 80,
+  SPA: 80,
   S: 0,
 };
 
