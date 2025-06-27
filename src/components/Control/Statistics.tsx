@@ -14,12 +14,12 @@ import { LineChartPlate, TextPlate } from "../Plates";
 import { ChargePlate } from "../Plates/ChargePlate";
 
 const defaultStats = {
-  AT: 21.25,
-  ST: 32.5,
-  A: 8.53,
+  AT: 25,
+  ST: 25,
+  A: 0.1,
+  SPST: 60,
+  SPA: 5,
   C: 1,
-  SPST: 80,
-  SPA: 80,
   S: 0,
 };
 
@@ -29,15 +29,18 @@ const defaultSeries = {
       .subtract(120 - i, "second")
       .format("HH:mm:ss");
   }),
-  ambient: Array.from({ length: 120 }, (_) => {
-    return 22 + Math.random() * 5;
-  }),
-  station: Array.from({ length: 120 }, (_) => {
-    return 22 + Math.random() * 5;
-  }),
-  current: Array.from({ length: 120 }, (_) => {
-    return 8 + Math.random() * 5;
-  }),
+  // ambient: Array.from({ length: 120 }, (_) => {
+  //   return 24 + Math.random() * 2;
+  // }),
+  // station: Array.from({ length: 120 }, (_) => {
+  //   return 24 + Math.random() * 2;
+  // }),
+  // current: Array.from({ length: 120 }, (_) => {
+  //   return 3 + Math.random() * 0.5;
+  // }),
+  ambient: [],
+  station: [],
+  current: [],
 };
 
 export const Statistics: React.FC = () => {
@@ -186,7 +189,7 @@ export const Statistics: React.FC = () => {
               y: {
                 beginAtZero: true,
                 min: 0,
-                max: 100,
+                max: 80,
               },
               x: {
                 ticks: {
