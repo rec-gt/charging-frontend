@@ -18,7 +18,7 @@ const defaultStats = {
   ST: 32.5,
   A: 8.53,
   C: 1,
-  SPT: 80,
+  SPST: 80,
   S: 0,
 };
 
@@ -105,7 +105,7 @@ export const Statistics: React.FC = () => {
       <div className="row-start-1 col-start-2 sm:row-start-2 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.CHARGING.THRESHOLD)}
-          text={`≥ ${stats.SPT.toFixed(0)} °C`}
+          text={`≥ ${stats.SPST.toFixed(0)} °C`}
           icon={<ThermostatIcon sx={{ color: "#ff0000" }} />}
           isAlert={false}
         />
@@ -116,7 +116,7 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
           text={`${stats.AT.toFixed(1)} °C`}
           icon={<ThermostatIcon sx={{ color: "#4c84ff" }} />}
-          isAlert={stats.AT >= stats.SPT}
+          isAlert={stats.AT >= stats.SPST}
         />
       </div>
       <div className="row-start-2 col-start-2 sm:row-start-4 sm:col-start-1 col-span-1 row-span-1">
@@ -124,7 +124,7 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
           text={`${stats.ST.toFixed(1)} °C`}
           icon={<ThermostatIcon sx={{ color: "#52b202" }} />}
-          isAlert={stats.ST >= stats.SPT}
+          isAlert={stats.ST >= stats.SPST}
         />
       </div>
       <div className="row-start-3 col-start-1 sm:row-start-5 sm:col-start-1 col-span-1 row-span-1">
@@ -159,7 +159,7 @@ export const Statistics: React.FC = () => {
                 pointRadius: 0,
                 data: Array.from(
                   { length: series.time.length },
-                  (_) => stats.SPT
+                  (_) => stats.SPST
                 ),
               },
               {

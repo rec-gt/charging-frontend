@@ -8,13 +8,13 @@ import { setPageLoading } from "../../state/pageLoadingSlice";
 import { sleep } from "../../utils";
 
 const defaultStats = {
-  SPT: null,
+  SPST: null,
 };
 
 export const SettingPage: React.FC = () => {
   const dispatch = useDispatch();
   const [stats, setStats] = useState(defaultStats);
-  const [SPT, setSPT] = useState(80);
+  const [SPST, setSPST] = useState(80);
 
   const handleGetStats = async () => {
     await axios({
@@ -29,17 +29,17 @@ export const SettingPage: React.FC = () => {
       });
   };
 
-  const handleSetSPT = async () => {
+  const handleSetSPST = async () => {
     dispatch(setPageLoading(true));
     await axios({
       method: "POST",
-      url: `${backendServer}/system/set/spt`,
+      url: `${backendServer}/system/set/spst`,
       data: {
-        SPT,
+        SPST,
       },
     })
       .then((res) => {
-        setSPT(res.data);
+        setSPST(res.data);
         console.log(res.data);
       })
       .catch((err) => {
@@ -66,18 +66,18 @@ export const SettingPage: React.FC = () => {
       <div className="flex flex-col gap-2 justify-center items-center h-[600px]">
         <div className="flex gap-2 justify-center items-center">
           <div>CURRENT SET POINT TEMPERATURE</div>
-          <div>{stats.SPT ?? "-"}</div>
+          <div>{stats.SPST ?? "-"}</div>
         </div>
         <div className="flex gap-2 justify-center items-center">
           <div>SET POINT TEMPERATURE</div>
           <input
             className="py-[0.1rem] px-1 rounded-sm border-[2px] border-[#ccc]"
-            value={SPT}
+            value={SPST}
             onChange={(e) => {
-              setSPT(Number(e.target.value));
+              setSPST(Number(e.target.value));
             }}
           />
-          <Button onClick={handleSetSPT}>UPDATE</Button>
+          <Button onClick={handleSetSPST}>UPDATE</Button>
         </div>
       </div>
     </PageLayout>
