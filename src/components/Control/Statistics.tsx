@@ -20,7 +20,7 @@ const defaultStats = {
   SPST: 60,
   SPA: 5,
   C: 1,
-  S: 0,
+  M: 0,
 };
 
 const defaultSeries = {
@@ -100,7 +100,7 @@ export const Statistics: React.FC = () => {
               LANG(LANG_OBJ.CHARGING.MODE.RUNNING),
               LANG(LANG_OBJ.CHARGING.MODE.STOPPED),
               LANG(LANG_OBJ.CHARGING.MODE.BYPASS),
-            ][stats.S]
+            ][stats.M]
           }
           icon={<SettingsIcon sx={{ color: "#555" }} />}
           isAlert={false}
