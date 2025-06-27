@@ -9,12 +9,14 @@ import { sleep } from "../../utils";
 
 const defaultStats = {
   SPST: null,
+  SPA: null,
 };
 
 export const SettingPage: React.FC = () => {
   const dispatch = useDispatch();
   const [stats, setStats] = useState(defaultStats);
   const [SPST, setSPST] = useState(80);
+  const [SPA, setSPA] = useState(1);
 
   const handleGetStats = async () => {
     await axios({
@@ -34,6 +36,28 @@ export const SettingPage: React.FC = () => {
     await axios({
       method: "POST",
       url: `${backendServer}/system/set/spst`,
+      data: {
+        SPST,
+      },
+    })
+      .then((res) => {
+        setSPST(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(async () => {
+        await sleep(300);
+        dispatch(setPageLoading(false));
+      });
+  };
+
+  const handleSetSPA = async () => {
+    dispatch(setPageLoading(true));
+    await axios({
+      method: "POST",
+      url: `${backendServer}/system/set/spa`,
       data: {
         SPST,
       },
@@ -78,6 +102,17 @@ export const SettingPage: React.FC = () => {
             }}
           />
           <Button onClick={handleSetSPST}>UPDATE</Button>
+        </div>
+        <div className="flex gap-2 justify-center items-center">
+          <div>SET POINT CURRENT</div>
+          <input
+            className="py-[0.1rem] px-1 rounded-sm border-[2px] border-[#ccc]"
+            value={SPA}
+            onChange={(e) => {
+              setSPA(Number(e.target.value));
+            }}
+          />
+          <Button onClick={handleSetSPA}>UPDATE</Button>
         </div>
       </div>
     </PageLayout>

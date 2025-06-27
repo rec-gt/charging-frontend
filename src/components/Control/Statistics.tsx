@@ -29,15 +29,6 @@ const defaultSeries = {
       .subtract(120 - i, "second")
       .format("HH:mm:ss");
   }),
-  // ambient: Array.from({ length: 120 }, (_) => {
-  //   return 24 + Math.random() * 2;
-  // }),
-  // station: Array.from({ length: 120 }, (_) => {
-  //   return 24 + Math.random() * 2;
-  // }),
-  // current: Array.from({ length: 120 }, (_) => {
-  //   return 3 + Math.random() * 0.5;
-  // }),
   ambient: [],
   station: [],
   current: [],
