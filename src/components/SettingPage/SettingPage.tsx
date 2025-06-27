@@ -31,39 +31,18 @@ export const SettingPage: React.FC = () => {
       });
   };
 
-  const handleSetSPST = async () => {
+  const handleSetSP = async () => {
     dispatch(setPageLoading(true));
     await axios({
       method: "POST",
-      url: `${backendServer}/system/set/spst`,
+      url: `${backendServer}/system/set/sp`,
       data: {
         SPST,
+        SPA,
       },
     })
       .then((res) => {
-        setSPST(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(async () => {
-        await sleep(300);
-        dispatch(setPageLoading(false));
-      });
-  };
-
-  const handleSetSPA = async () => {
-    dispatch(setPageLoading(true));
-    await axios({
-      method: "POST",
-      url: `${backendServer}/system/set/spa`,
-      data: {
-        SPST,
-      },
-    })
-      .then((res) => {
-        setSPST(res.data);
+        setStats(res.data);
         console.log(res.data);
       })
       .catch((err) => {
@@ -93,6 +72,10 @@ export const SettingPage: React.FC = () => {
           <div>{stats.SPST ?? "-"}</div>
         </div>
         <div className="flex gap-2 justify-center items-center">
+          <div>CURRENT SET POINT CURRENT</div>
+          <div>{stats.SPA ?? "-"}</div>
+        </div>
+        <div className="flex gap-2 justify-center items-center">
           <div>SET POINT TEMPERATURE</div>
           <input
             className="py-[0.1rem] px-1 rounded-sm border-[2px] border-[#ccc]"
@@ -101,7 +84,6 @@ export const SettingPage: React.FC = () => {
               setSPST(Number(e.target.value));
             }}
           />
-          <Button onClick={handleSetSPST}>UPDATE</Button>
         </div>
         <div className="flex gap-2 justify-center items-center">
           <div>SET POINT CURRENT</div>
@@ -112,8 +94,8 @@ export const SettingPage: React.FC = () => {
               setSPA(Number(e.target.value));
             }}
           />
-          <Button onClick={handleSetSPA}>UPDATE</Button>
         </div>
+        <Button onClick={handleSetSP}>UPDATE</Button>
       </div>
     </PageLayout>
   );
