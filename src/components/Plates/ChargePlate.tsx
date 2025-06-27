@@ -12,7 +12,7 @@ type ChargePlateProps = {
 export const ChargePlate: React.FC<ChargePlateProps> = (props) => {
   const { title, isCharging, icon } = props;
   return (
-    <Plate title={title} icon={icon}>
+    <Plate title={title} topRightElement={icon}>
       <div className="w-[40px] h-full flex justify-center items-center">
         {isCharging ? (
           <PowerIcon

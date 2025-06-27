@@ -2,14 +2,13 @@ import React from "react";
 
 type PlateProps = {
   title: string;
-  icon?: any;
   topLeftElement?: any;
   topRightElement?: any;
   children: any;
 };
 
 export const Plate: React.FC<PlateProps> = (props) => {
-  const { title, topLeftElement, topRightElement, icon, children } = props;
+  const { title, topLeftElement, topRightElement, children } = props;
   return (
     <div className="w-full h-full flex flex-col items-center rounded-xl border-[2px] border-[#ccc]">
       <div className="relative w-full flex justify-between">
