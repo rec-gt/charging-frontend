@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { backendServer } from "../../config";
 import { setPageLoading } from "../../state/pageLoadingSlice";
-import { LANG, LANG_OBJ } from "../../utils";
+import { LANG, LANG_OBJ, sleep } from "../../utils";
 import { LineChartPlate, TextPlate } from "../Plates";
 import { ChargePlate } from "../Plates/ChargePlate";
 
@@ -70,6 +70,8 @@ export const Statistics: React.FC = () => {
   };
 
   const handleChangeMode = async (mode: 0 | 1 | 2) => {
+    dispatch(setPageLoading(true));
+    await sleep(3000);
     await axios({
       method: "POST",
       url: `${backendServer}/system/set/mode`,
@@ -77,8 +79,7 @@ export const Statistics: React.FC = () => {
         mode,
       },
     })
-      .then((res) => {
-        setStats(res.data);
+      .then(() => {
         dispatch(setPageLoading(false));
       })
       .catch((err) => {
@@ -116,15 +117,21 @@ export const Statistics: React.FC = () => {
           bottomMiddleElement={
             <div className="flex gap-1 sm:gap-2">
               <PowerSettingsNewIcon
-                onClick={() => handleChangeMode(0)}
+                onClick={() => {
+                  handleChangeMode(0);
+                }}
                 sx={{ color: "#555", fontSize: "16pt" }}
               />
               <DangerousIcon
-                onClick={() => handleChangeMode(1)}
+                onClick={() => {
+                  handleChangeMode(1);
+                }}
                 sx={{ color: "#555", fontSize: "16pt" }}
               />
               <EngineeringIcon
-                onClick={() => handleChangeMode(2)}
+                onClick={() => {
+                  handleChangeMode(2);
+                }}
                 sx={{ color: "#555", fontSize: "16pt" }}
               />
             </div>
