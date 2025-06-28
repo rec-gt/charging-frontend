@@ -41,6 +41,7 @@ export const Statistics: React.FC = () => {
   const dispatch = useDispatch();
   const [stats, setStats] = useState(defaultStats);
   const [series, setSeries] = useState(defaultSeries);
+  const [mode, setMode] = useState(defaultStats.M);
 
   const handleGetStats = async () => {
     await axios({
@@ -80,6 +81,7 @@ export const Statistics: React.FC = () => {
       },
     })
       .then(() => {
+        setMode(mode);
         dispatch(setPageLoading(false));
       })
       .catch((err) => {
@@ -120,19 +122,28 @@ export const Statistics: React.FC = () => {
                 onClick={() => {
                   handleChangeMode(0);
                 }}
-                sx={{ color: "#555", fontSize: "16pt" }}
+                sx={{
+                  color: stats.M == 0 ? "#52b202" : "#555",
+                  fontSize: "16pt",
+                }}
               />
               <DangerousIcon
                 onClick={() => {
                   handleChangeMode(1);
                 }}
-                sx={{ color: "#555", fontSize: "16pt" }}
+                sx={{
+                  color: stats.M == 0 ? "#52b202" : "#555",
+                  fontSize: "16pt",
+                }}
               />
               <EngineeringIcon
                 onClick={() => {
                   handleChangeMode(2);
                 }}
-                sx={{ color: "#555", fontSize: "16pt" }}
+                sx={{
+                  color: stats.M == 0 ? "#52b202" : "#555",
+                  fontSize: "16pt",
+                }}
               />
             </div>
           }
