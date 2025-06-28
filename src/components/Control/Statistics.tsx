@@ -1,7 +1,9 @@
-import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
+import DangerousIcon from "@mui/icons-material/Dangerous";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
+import EngineeringIcon from "@mui/icons-material/Engineering";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import axios from "axios";
@@ -67,6 +69,23 @@ export const Statistics: React.FC = () => {
       });
   };
 
+  const handleChangeMode = async (mode: 0 | 1 | 2) => {
+    await axios({
+      method: "POST",
+      url: `${backendServer}/system/set/mode`,
+      data: {
+        mode,
+      },
+    })
+      .then((res) => {
+        setStats(res.data);
+        dispatch(setPageLoading(false));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     dispatch(setPageLoading(true));
     setStats(defaultStats);
@@ -94,8 +113,21 @@ export const Statistics: React.FC = () => {
               LANG(LANG_OBJ.CHARGING.MODE.BYPASS),
             ][stats.M]
           }
-          topLeftElement={
-            <ChangeCircleIcon sx={{ color: "#555", fontSize: "16pt" }} />
+          bottomMiddleElement={
+            <div className="flex gap-1 sm:gap-2">
+              <PowerSettingsNewIcon
+                onClick={() => handleChangeMode(0)}
+                sx={{ color: "#555", fontSize: "16pt" }}
+              />
+              <DangerousIcon
+                onClick={() => handleChangeMode(1)}
+                sx={{ color: "#555", fontSize: "16pt" }}
+              />
+              <EngineeringIcon
+                onClick={() => handleChangeMode(2)}
+                sx={{ color: "#555", fontSize: "16pt" }}
+              />
+            </div>
           }
           icon={<SettingsIcon sx={{ color: "#555", fontSize: "16pt" }} />}
           isAlert={false}
