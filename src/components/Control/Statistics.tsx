@@ -63,7 +63,6 @@ export const Statistics: React.FC = () => {
     })
       .then((res) => {
         setSeries(res.data);
-        dispatch(setPageLoading(false));
       })
       .catch((err) => {
         console.log(err);
@@ -72,7 +71,6 @@ export const Statistics: React.FC = () => {
 
   const handleChangeMode = async (mode: 0 | 1 | 2) => {
     dispatch(setPageLoading(true));
-    await sleep(3000);
     await axios({
       method: "POST",
       url: `${backendServer}/system/set/mode`,
@@ -80,9 +78,10 @@ export const Statistics: React.FC = () => {
         mode,
       },
     })
-      .then(() => {
-        setMode(mode);
-        dispatch(setPageLoading(false));
+      .then(async (res) => {
+        await sleep(3000);
+        console.log("server: ", res.data.M);
+        setMode(res.data.M);
       })
       .catch((err) => {
         console.log(err);
@@ -103,6 +102,15 @@ export const Statistics: React.FC = () => {
       clearInterval(interval);
     };
   }, []);
+
+  useEffect(() => {
+    console.log(mode, stats.M);
+    console.log("local: ", stats.M);
+
+    if (mode === stats.M) {
+      dispatch(setPageLoading(false));
+    }
+  }, [stats, mode]);
 
   return (
     <div className="grid grid-cols-2 grid-rows-9 h-[1000px] sm:grid-cols-3 sm:grid-rows-6 sm:h-[650px] gap-2 mb-4">
@@ -132,7 +140,7 @@ export const Statistics: React.FC = () => {
                   handleChangeMode(1);
                 }}
                 sx={{
-                  color: stats.M == 0 ? "#52b202" : "#555",
+                  color: stats.M == 1 ? "#52b202" : "#555",
                   fontSize: "16pt",
                 }}
               />
@@ -141,7 +149,7 @@ export const Statistics: React.FC = () => {
                   handleChangeMode(2);
                 }}
                 sx={{
-                  color: stats.M == 0 ? "#52b202" : "#555",
+                  color: stats.M == 2 ? "#52b202" : "#555",
                   fontSize: "16pt",
                 }}
               />
