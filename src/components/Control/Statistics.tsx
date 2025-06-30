@@ -191,7 +191,7 @@ export const Statistics: React.FC = () => {
           icon={
             <ElectricBoltIcon sx={{ color: "#ffa500", fontSize: "16pt" }} />
           }
-          isAlert={false}
+          isAlert={stats.A >= stats.SPA}
         />
       </div>
       <div className="row-start-3 col-start-2 sm:row-start-6 sm:col-start-1 col-span-1 row-span-1">
