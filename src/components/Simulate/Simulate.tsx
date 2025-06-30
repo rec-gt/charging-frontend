@@ -17,11 +17,11 @@ const temperatureMarks = [
   },
   {
     value: 60,
-    label: "60°C",
+    label: <div className="text-[#ff0000]">60°C⚠️</div>,
   },
   {
     value: 80,
-    label: "80°C",
+    label: <div className="text-[#ff0000]">80°C⚠️</div>,
   },
 ];
 
