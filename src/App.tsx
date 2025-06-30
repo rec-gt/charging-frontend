@@ -8,6 +8,7 @@ import {
   PageDialogBox,
   PageLoading,
   SettingPage,
+  SimulatePage,
 } from "./components";
 import { USER_ROLE } from "./config";
 import { NotFound } from "./pages";
@@ -32,6 +33,11 @@ function App() {
     {
       path: "/admin/control",
       element: <ControlPage />,
+      allowed: [USER_ROLE.GUEST, USER_ROLE.ADMIN],
+    },
+    {
+      path: "/admin/simulate",
+      element: <SimulatePage />,
       allowed: [USER_ROLE.GUEST, USER_ROLE.ADMIN],
     },
     {

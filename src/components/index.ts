@@ -14,6 +14,7 @@ export * from "./PageLoading";
 export * from "./Paginator";
 export * from "./SelectField";
 export * from "./SettingPage";
+export * from "./Simulate";
 export * from "./TabPage";
 export * from "./Title";
 export * from "./ToolBar";
