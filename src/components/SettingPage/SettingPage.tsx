@@ -8,14 +8,14 @@ import { setPageLoading } from "../../state/pageLoadingSlice";
 import { sleep } from "../../utils";
 
 const defaultStats = {
-  SPST: null,
+  SPT: null,
   SPA: null,
 };
 
 export const SettingPage: React.FC = () => {
   const dispatch = useDispatch();
   const [stats, setStats] = useState(defaultStats);
-  const [SPST, setSPST] = useState(80);
+  const [SPT, setSPT] = useState(80);
   const [SPA, setSPA] = useState(1);
 
   const handleGetStats = async () => {
@@ -37,7 +37,7 @@ export const SettingPage: React.FC = () => {
       method: "POST",
       url: `${backendServer}/system/set/sp`,
       data: {
-        SPST,
+        SPT,
         SPA,
       },
     })
@@ -69,7 +69,7 @@ export const SettingPage: React.FC = () => {
       <div className="flex flex-col gap-2 justify-center items-center h-[600px]">
         <div className="flex gap-2 justify-center items-center">
           <div>CURRENT SET POINT TEMPERATURE</div>
-          <div>{stats.SPST ?? "-"}</div>
+          <div>{stats.SPT ?? "-"}</div>
         </div>
         <div className="flex gap-2 justify-center items-center">
           <div>CURRENT SET POINT CURRENT</div>
@@ -79,9 +79,9 @@ export const SettingPage: React.FC = () => {
           <div>SET POINT TEMPERATURE</div>
           <input
             className="py-[0.1rem] px-1 rounded-sm border-[2px] border-[#ccc]"
-            value={SPST}
+            value={SPT}
             onChange={(e) => {
-              setSPST(Number(e.target.value));
+              setSPT(Number(e.target.value));
             }}
           />
         </div>
