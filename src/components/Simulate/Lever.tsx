@@ -1,7 +1,7 @@
 import { PageLayout } from "../PageLayout";
 import { SimulateTitle } from "../Title";
 
-export const SimulatePage: React.FC = () => {
+export const Lever: React.FC = () => {
   return (
     <PageLayout>
       <div className="w-full block sm:hidden">
