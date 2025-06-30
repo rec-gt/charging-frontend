@@ -119,14 +119,21 @@ export const Statistics: React.FC = () => {
           title={LANG(LANG_OBJ.CHARGING.MODE.TITLE)}
           text={
             [
-              LANG(LANG_OBJ.CHARGING.MODE.RUNNING),
-              LANG(LANG_OBJ.CHARGING.MODE.STOPPED),
-              LANG(LANG_OBJ.CHARGING.MODE.BYPASS),
+              <span className="text-[clamp(15pt,3cqw,26pt)]!">
+                {LANG(LANG_OBJ.CHARGING.MODE.RUNNING)}
+              </span>,
+              <span className="text-[clamp(15pt,3cqw,26pt)]! text-[#ff0000]">
+                {LANG(LANG_OBJ.CHARGING.MODE.STOPPED)}⚠️
+              </span>,
+              <span className="text-[clamp(15pt,3cqw,26pt)]!">
+                {LANG(LANG_OBJ.CHARGING.MODE.BYPASS)}🔧
+              </span>,
             ][stats.M]
           }
           bottomMiddleElement={
-            <div className="flex gap-1 sm:gap-2">
+            <div className="flex gap-1 sm:gap-4">
               <PowerSettingsNewIcon
+                className="cursor-pointer"
                 onClick={() => {
                   handleChangeMode(0);
                 }}
@@ -136,6 +143,7 @@ export const Statistics: React.FC = () => {
                 }}
               />
               <DangerousIcon
+                className="cursor-pointer"
                 onClick={() => {
                   handleChangeMode(1);
                 }}
@@ -145,6 +153,7 @@ export const Statistics: React.FC = () => {
                 }}
               />
               <EngineeringIcon
+                className="cursor-pointer"
                 onClick={() => {
                   handleChangeMode(2);
                 }}
