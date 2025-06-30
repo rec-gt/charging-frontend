@@ -3,19 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { backendServer } from "../../config";
+import { setPageLoading } from "../../state/pageLoadingSlice";
 import { PageLayout } from "../PageLayout";
 import { SimulateTitle } from "../Title";
-import { setPageLoading } from "../../state/pageLoadingSlice";
-
-const defaultStats = {
-  AT: 25,
-  ST: 25,
-  A: 0.1,
-  SPST: 60,
-  SPA: 5,
-  C: 1,
-  M: 0,
-};
 
 const temperatureMarks = [
   {
@@ -43,8 +33,6 @@ const temperatureMarks = [
 export const SimulatePage: React.FC = () => {
   const dispatch = useDispatch();
 
-  const [stats, setStats] = useState(defaultStats);
-
   const [simulation, setSimulation] = useState(false);
 
   const handleGetStats = async () => {
@@ -53,7 +41,6 @@ export const SimulatePage: React.FC = () => {
       url: `${backendServer}/system/get/stats`,
     })
       .then((res) => {
-        setStats(res.data);
         setSimulation(res.data.M == 3);
       })
       .catch((err) => {
@@ -72,16 +59,14 @@ export const SimulatePage: React.FC = () => {
       data: {
         mode,
       },
-    })
-      .then(async (res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
+    }).catch((err) => {
+      console.log(err);
+    });
   };
 
   useEffect(() => {
-    setStats(defaultStats);
-
+    dispatch(setPageLoading(true));
+    
     const interval = setInterval(() => {
       handleGetStats();
     }, 1000);
