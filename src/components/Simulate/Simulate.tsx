@@ -1,6 +1,21 @@
-import { Slider } from "@mui/material";
+import { FormControlLabel, FormGroup, Slider, Switch } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { backendServer } from "../../config";
 import { PageLayout } from "../PageLayout";
 import { SimulateTitle } from "../Title";
+import { setPageLoading } from "../../state/pageLoadingSlice";
+
+const defaultStats = {
+  AT: 25,
+  ST: 25,
+  A: 0.1,
+  SPST: 60,
+  SPA: 5,
+  C: 1,
+  M: 0,
+};
 
 const temperatureMarks = [
   {
@@ -26,11 +41,79 @@ const temperatureMarks = [
 ];
 
 export const SimulatePage: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const [stats, setStats] = useState(defaultStats);
+
+  const [simulation, setSimulation] = useState(false);
+
+  const handleGetStats = async () => {
+    await axios({
+      method: "POST",
+      url: `${backendServer}/system/get/stats`,
+    })
+      .then((res) => {
+        setStats(res.data);
+        setSimulation(res.data.M == 3);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        dispatch(setPageLoading(false));
+      });
+  };
+
+  const handleChangeMode = async (mode: 0 | 3) => {
+    dispatch(setPageLoading(true));
+    await axios({
+      method: "POST",
+      url: `${backendServer}/system/set/mode`,
+      data: {
+        mode,
+      },
+    })
+      .then(async (res) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    setStats(defaultStats);
+
+    const interval = setInterval(() => {
+      handleGetStats();
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <PageLayout>
       <div className="w-full block sm:hidden">
         <SimulateTitle />
       </div>
+
+      <div className="flex gap-2 items-center">
+        SIMULATION
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Switch
+                onChange={(e: any) => {
+                  handleChangeMode(e.target.checked ? 3 : 0);
+                }}
+                checked={simulation}
+              />
+            }
+            label={simulation ? "ON" : "OFF"}
+          />
+        </FormGroup>
+      </div>
+
       <div className="grid grid-cols-3 grid-rows-1 min-h-[500px] mt-24 mb-48">
         <div className="flex flex-col items-center p-4">
           <div className="h-full p-4">
@@ -69,7 +152,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          AMBIENT TEMPERATURE
+          STATION TEMPERATURE
         </div>
         <div className="flex flex-col items-center p-4">
           <div className="h-full p-4">
@@ -88,7 +171,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          AMBIENT TEMPERATURE
+          CURRENT
         </div>
       </div>
     </PageLayout>

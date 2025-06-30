@@ -86,6 +86,11 @@ export const LANG_OBJ = {
         JP: "メンテナンス",
         ZH_T: "維護",
       },
+      SIMUATION: {
+        EN: "Simulation",
+        JP: "模擬",
+        ZH_T: "模擬",
+      },
     },
     THRESHOLD: {
       EN: "Threshold",

@@ -128,6 +128,9 @@ export const Statistics: React.FC = () => {
               <span className="text-[clamp(15pt,3cqw,26pt)]!">
                 {LANG(LANG_OBJ.CHARGING.MODE.BYPASS)}🔧
               </span>,
+              <span className="text-[clamp(15pt,3cqw,26pt)]!">
+                {LANG(LANG_OBJ.CHARGING.MODE.SIMUATION)}
+              </span>,
             ][stats.M]
           }
           bottomMiddleElement={
