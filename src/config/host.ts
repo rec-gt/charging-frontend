@@ -2,4 +2,4 @@
 //   ? "http://localhost:3010"
 //   : `${window.location.origin}/api`;
 
-export const backendServer = "http://10.236.209.62:3010";
+export const backendServer = "http://10.236.208.40:3010";
