@@ -37,10 +37,13 @@ const defaultSeries = {
   current: [],
 };
 
+const defaultLogs: any = [];
+
 export const Statistics: React.FC = () => {
   const dispatch = useDispatch();
   const [stats, setStats] = useState(defaultStats);
   const [series, setSeries] = useState(defaultSeries);
+  const [logs, setLogs] = useState(defaultLogs);
   const [mode, setMode] = useState(defaultStats.M);
 
   const handleGetStats = async () => {
@@ -63,6 +66,19 @@ export const Statistics: React.FC = () => {
     })
       .then((res) => {
         setSeries(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleGetLogs = async () => {
+    await axios({
+      method: "POST",
+      url: `${backendServer}/system/get/logs`,
+    })
+      .then((res) => {
+        setLogs(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -92,10 +108,12 @@ export const Statistics: React.FC = () => {
     dispatch(setPageLoading(true));
     setStats(defaultStats);
     setSeries(defaultSeries);
+    setLogs(defaultLogs);
 
     const interval = setInterval(() => {
       handleGetStats();
       handleGetSeries();
+      // handleGetLogs();
     }, 1000);
 
     return () => {
@@ -113,210 +131,219 @@ export const Statistics: React.FC = () => {
   }, [stats, mode]);
 
   return (
-    <div className="grid grid-cols-2 grid-rows-9 h-[1000px] sm:grid-cols-3 sm:grid-rows-6 sm:h-[650px] gap-2 mb-4">
-      <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
-        <TextPlate
-          title={LANG(LANG_OBJ.CHARGING.MODE.TITLE)}
-          text={
-            [
-              <span className="text-[clamp(15pt,3cqw,26pt)]!">
-                {LANG(LANG_OBJ.CHARGING.MODE.RUNNING)}
-              </span>,
-              <span className="text-[clamp(15pt,3cqw,26pt)]! text-[#ff0000]">
-                {LANG(LANG_OBJ.CHARGING.MODE.STOPPED)}⚠️
-              </span>,
-              <span className="text-[clamp(15pt,3cqw,26pt)]!">
-                {LANG(LANG_OBJ.CHARGING.MODE.BYPASS)}🔧
-              </span>,
-              <span className="text-[clamp(15pt,3cqw,26pt)]!">
-                {LANG(LANG_OBJ.CHARGING.MODE.SIMUATION)}
-              </span>,
-            ][stats.M]
-          }
-          bottomMiddleElement={
-            <div className="flex gap-1 sm:gap-4">
-              <PowerSettingsNewIcon
-                className="cursor-pointer"
-                onClick={() => {
-                  handleChangeMode(0);
-                }}
-                sx={{
-                  color: stats.M == 0 ? "#52b202" : "#555",
-                  fontSize: "16pt",
-                }}
+    <div>
+      <div className="grid grid-cols-2 grid-rows-9 h-[1000px] sm:grid-cols-3 sm:grid-rows-6 sm:h-[650px] gap-2 mb-4">
+        <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
+          <TextPlate
+            title={LANG(LANG_OBJ.CHARGING.MODE.TITLE)}
+            text={
+              [
+                <span className="text-[clamp(15pt,3cqw,26pt)]!">
+                  {LANG(LANG_OBJ.CHARGING.MODE.RUNNING)}
+                </span>,
+                <span className="text-[clamp(15pt,3cqw,26pt)]! text-[#ff0000]">
+                  {LANG(LANG_OBJ.CHARGING.MODE.STOPPED)}⚠️
+                </span>,
+                <span className="text-[clamp(15pt,3cqw,26pt)]!">
+                  {LANG(LANG_OBJ.CHARGING.MODE.BYPASS)}🔧
+                </span>,
+                <span className="text-[clamp(15pt,3cqw,26pt)]!">
+                  {LANG(LANG_OBJ.CHARGING.MODE.SIMUATION)}
+                </span>,
+              ][stats.M]
+            }
+            bottomMiddleElement={
+              <div className="flex gap-1 sm:gap-4">
+                <PowerSettingsNewIcon
+                  className="cursor-pointer"
+                  onClick={() => {
+                    handleChangeMode(0);
+                  }}
+                  sx={{
+                    color: stats.M == 0 ? "#52b202" : "#555",
+                    fontSize: "16pt",
+                  }}
+                />
+                <DangerousIcon
+                  className="cursor-pointer"
+                  onClick={() => {
+                    handleChangeMode(1);
+                  }}
+                  sx={{
+                    color: stats.M == 1 ? "#52b202" : "#555",
+                    fontSize: "16pt",
+                  }}
+                />
+                <EngineeringIcon
+                  className="cursor-pointer"
+                  onClick={() => {
+                    handleChangeMode(2);
+                  }}
+                  sx={{
+                    color: stats.M == 2 ? "#52b202" : "#555",
+                    fontSize: "16pt",
+                  }}
+                />
+              </div>
+            }
+            icon={<SettingsIcon sx={{ color: "#555", fontSize: "16pt" }} />}
+            isAlert={false}
+          />
+        </div>
+        <div className="row-start-1 col-start-2 sm:row-start-2 sm:col-start-1 col-span-1 row-span-1">
+          <TextPlate
+            title={LANG(LANG_OBJ.CHARGING.THRESHOLD)}
+            text={`≥ ${stats.SPT.toFixed(0)} °C / ${stats.SPA.toFixed(1)} A`}
+            icon={
+              <ThermostatIcon sx={{ color: "#ff0000", fontSize: "16pt" }} />
+            }
+            isAlert={false}
+          />
+        </div>
+        <div className="row-start-2 col-start-1 sm:row-start-3 sm:col-start-1 col-span-1 row-span-1">
+          <TextPlate
+            title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
+            text={`${stats.AT.toFixed(1)} °C`}
+            icon={
+              <ThermostatIcon sx={{ color: "#4c84ff", fontSize: "16pt" }} />
+            }
+            isAlert={stats.AT >= stats.SPT}
+          />
+        </div>
+        <div className="row-start-2 col-start-2 sm:row-start-4 sm:col-start-1 col-span-1 row-span-1">
+          <TextPlate
+            title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
+            text={`${stats.ST.toFixed(1)} °C`}
+            icon={
+              <ThermostatIcon sx={{ color: "#52b202", fontSize: "16pt" }} />
+            }
+            isAlert={stats.ST >= stats.SPT}
+          />
+        </div>
+        <div className="row-start-3 col-start-1 sm:row-start-5 sm:col-start-1 col-span-1 row-span-1">
+          <TextPlate
+            title={LANG(LANG_OBJ.GAUGE.CURRENT)}
+            text={`${stats.A.toFixed(1)} A`}
+            icon={
+              <ElectricBoltIcon sx={{ color: "#ffa500", fontSize: "16pt" }} />
+            }
+            isAlert={stats.A >= stats.SPA}
+          />
+        </div>
+        <div className="row-start-3 col-start-2 sm:row-start-6 sm:col-start-1 col-span-1 row-span-1">
+          <ChargePlate
+            title={LANG(stats.C ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF)}
+            icon={
+              <ElectricalServicesIcon
+                sx={{ color: "#555", fontSize: "16pt" }}
               />
-              <DangerousIcon
-                className="cursor-pointer"
-                onClick={() => {
-                  handleChangeMode(1);
-                }}
-                sx={{
-                  color: stats.M == 1 ? "#52b202" : "#555",
-                  fontSize: "16pt",
-                }}
-              />
-              <EngineeringIcon
-                className="cursor-pointer"
-                onClick={() => {
-                  handleChangeMode(2);
-                }}
-                sx={{
-                  color: stats.M == 2 ? "#52b202" : "#555",
-                  fontSize: "16pt",
-                }}
-              />
-            </div>
-          }
-          icon={<SettingsIcon sx={{ color: "#555", fontSize: "16pt" }} />}
-          isAlert={false}
-        />
-      </div>
-      <div className="row-start-1 col-start-2 sm:row-start-2 sm:col-start-1 col-span-1 row-span-1">
-        <TextPlate
-          title={LANG(LANG_OBJ.CHARGING.THRESHOLD)}
-          text={`≥ ${stats.SPT.toFixed(0)} °C / ${stats.SPA.toFixed(1)} A`}
-          icon={<ThermostatIcon sx={{ color: "#ff0000", fontSize: "16pt" }} />}
-          isAlert={false}
-        />
-      </div>
-
-      <div className="row-start-2 col-start-1 sm:row-start-3 sm:col-start-1 col-span-1 row-span-1">
-        <TextPlate
-          title={LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
-          text={`${stats.AT.toFixed(1)} °C`}
-          icon={<ThermostatIcon sx={{ color: "#4c84ff", fontSize: "16pt" }} />}
-          isAlert={stats.AT >= stats.SPT}
-        />
-      </div>
-      <div className="row-start-2 col-start-2 sm:row-start-4 sm:col-start-1 col-span-1 row-span-1">
-        <TextPlate
-          title={LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
-          text={`${stats.ST.toFixed(1)} °C`}
-          icon={<ThermostatIcon sx={{ color: "#52b202", fontSize: "16pt" }} />}
-          isAlert={stats.ST >= stats.SPT}
-        />
-      </div>
-      <div className="row-start-3 col-start-1 sm:row-start-5 sm:col-start-1 col-span-1 row-span-1">
-        <TextPlate
-          title={LANG(LANG_OBJ.GAUGE.CURRENT)}
-          text={`${stats.A.toFixed(1)} A`}
-          icon={
-            <ElectricBoltIcon sx={{ color: "#ffa500", fontSize: "16pt" }} />
-          }
-          isAlert={stats.A >= stats.SPA}
-        />
-      </div>
-      <div className="row-start-3 col-start-2 sm:row-start-6 sm:col-start-1 col-span-1 row-span-1">
-        <ChargePlate
-          title={LANG(stats.C ? LANG_OBJ.CHARGING.ON : LANG_OBJ.CHARGING.OFF)}
-          icon={
-            <ElectricalServicesIcon sx={{ color: "#555", fontSize: "16pt" }} />
-          }
-          isCharging={Boolean(stats.C === 1)}
-        />
-      </div>
-      <div className="col-span-2 row-span-3">
-        <LineChartPlate
-          title={LANG(LANG_OBJ.GAUGE.TEMP_MONITOR)}
-          icon={<EqualizerIcon sx={{ color: "#555", fontSize: "16pt" }} />}
-          data={{
-            labels: series.time,
-            datasets: [
-              {
-                label: LANG(LANG_OBJ.CHARGING.THRESHOLD.TEMP),
-                backgroundColor: "#ff0000",
-                hoverBackgroundColor: "#ff0000",
-                borderWidth: 1.5,
-                borderColor: "#ff0000",
-                borderDash: [10, 10],
-                pointRadius: 0,
-                data: Array.from(
-                  { length: series.time.length },
-                  (_) => stats.SPT
-                ),
-              },
-              {
-                label: LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP),
-                backgroundColor: "#4c84ff",
-                hoverBackgroundColor: "#4c84ff80",
-                borderWidth: 1.5,
-                borderColor: "#4c84ff",
-                data: series.ambient,
-              },
-              {
-                label: LANG(LANG_OBJ.GAUGE.STATION_TEMP),
-                backgroundColor: "#52b202",
-                hoverBackgroundColor: "#52b20280",
-                borderWidth: 1.5,
-                borderColor: "#52b202",
-                data: series.station,
-              },
-            ],
-          }}
-          options={{
-            scales: {
-              y: {
-                beginAtZero: true,
-                min: 0,
-                max: 80,
-              },
-              x: {
-                ticks: {
-                  maxRotation: 0,
-                  minRotation: 0,
-                  maxTicksLimit: 7,
+            }
+            isCharging={Boolean(stats.C === 1)}
+          />
+        </div>
+        <div className="col-span-2 row-span-3">
+          <LineChartPlate
+            title={LANG(LANG_OBJ.GAUGE.TEMP_MONITOR)}
+            icon={<EqualizerIcon sx={{ color: "#555", fontSize: "16pt" }} />}
+            data={{
+              labels: series.time,
+              datasets: [
+                {
+                  label: LANG(LANG_OBJ.CHARGING.THRESHOLD.TEMP),
+                  backgroundColor: "#ff0000",
+                  hoverBackgroundColor: "#ff0000",
+                  borderWidth: 1.5,
+                  borderColor: "#ff0000",
+                  borderDash: [10, 10],
+                  pointRadius: 0,
+                  data: Array.from(
+                    { length: series.time.length },
+                    (_) => stats.SPT
+                  ),
+                },
+                {
+                  label: LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP),
+                  backgroundColor: "#4c84ff",
+                  hoverBackgroundColor: "#4c84ff80",
+                  borderWidth: 1.5,
+                  borderColor: "#4c84ff",
+                  data: series.ambient,
+                },
+                {
+                  label: LANG(LANG_OBJ.GAUGE.STATION_TEMP),
+                  backgroundColor: "#52b202",
+                  hoverBackgroundColor: "#52b20280",
+                  borderWidth: 1.5,
+                  borderColor: "#52b202",
+                  data: series.station,
+                },
+              ],
+            }}
+            options={{
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  min: 0,
+                  max: 80,
+                },
+                x: {
+                  ticks: {
+                    maxRotation: 0,
+                    minRotation: 0,
+                    maxTicksLimit: 7,
+                  },
                 },
               },
-            },
-          }}
-        />
-      </div>
-      <div className="col-span-2 row-span-3">
-        <LineChartPlate
-          title={LANG(LANG_OBJ.GAUGE.CURRENT_MONITOR)}
-          icon={<EqualizerIcon sx={{ color: "#555", fontSize: "16pt" }} />}
-          data={{
-            labels: series.time,
-            datasets: [
-              {
-                label: LANG(LANG_OBJ.CHARGING.THRESHOLD.CURRENT),
-                backgroundColor: "#ff0000",
-                hoverBackgroundColor: "#ff0000",
-                borderWidth: 1.5,
-                borderColor: "#ff0000",
-                borderDash: [10, 10],
-                pointRadius: 0,
-                data: Array.from(
-                  { length: series.time.length },
-                  (_) => stats.SPA
-                ),
-              },
-              {
-                label: LANG(LANG_OBJ.GAUGE.CURRENT),
-                backgroundColor: "#ffa500",
-                borderWidth: 1.5,
-                borderColor: "#ffa500",
-                data: series.current,
-              },
-            ],
-          }}
-          options={{
-            scales: {
-              y: {
-                beginAtZero: true,
-                min: 0,
-                max: 10,
-              },
-              x: {
-                ticks: {
-                  maxRotation: 0,
-                  minRotation: 0,
-                  maxTicksLimit: 7,
+            }}
+          />
+        </div>
+        <div className="col-span-2 row-span-3">
+          <LineChartPlate
+            title={LANG(LANG_OBJ.GAUGE.CURRENT_MONITOR)}
+            icon={<EqualizerIcon sx={{ color: "#555", fontSize: "16pt" }} />}
+            data={{
+              labels: series.time,
+              datasets: [
+                {
+                  label: LANG(LANG_OBJ.CHARGING.THRESHOLD.CURRENT),
+                  backgroundColor: "#ff0000",
+                  hoverBackgroundColor: "#ff0000",
+                  borderWidth: 1.5,
+                  borderColor: "#ff0000",
+                  borderDash: [10, 10],
+                  pointRadius: 0,
+                  data: Array.from(
+                    { length: series.time.length },
+                    (_) => stats.SPA
+                  ),
+                },
+                {
+                  label: LANG(LANG_OBJ.GAUGE.CURRENT),
+                  backgroundColor: "#ffa500",
+                  borderWidth: 1.5,
+                  borderColor: "#ffa500",
+                  data: series.current,
+                },
+              ],
+            }}
+            options={{
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  min: 0,
+                  max: 10,
+                },
+                x: {
+                  ticks: {
+                    maxRotation: 0,
+                    minRotation: 0,
+                    maxTicksLimit: 7,
+                  },
                 },
               },
-            },
-          }}
-        />
+            }}
+          />
+        </div>
       </div>
     </div>
   );
