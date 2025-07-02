@@ -13,75 +13,20 @@ export const SimulatePage: React.FC = () => {
   const [simulation, setSimulation] = useState(false);
 
   const [marks, setMarks] = useState({
-    AT_MARKS: [
-      { key: 0, value: 0, label: "FOR_SET_POINT" },
-      {
-        value: 0,
-        label: "0°C",
-      },
-      {
-        value: 20,
-        label: "20°C",
-      },
-      {
-        value: 40,
-        label: "40°C",
-      },
-      {
-        value: 60,
-        label: "60°C",
-      },
-      {
-        value: 80,
-        label: "80°C",
-      },
-    ],
-    ST_MARKS: [
-      { value: 0, label: "FOR_SET_POINT" },
-      {
-        value: 0,
-        label: "0°C",
-      },
-      {
-        value: 20,
-        label: "20°C",
-      },
-      {
-        value: 40,
-        label: "40°C",
-      },
-      {
-        value: 60,
-        label: "60°C",
-      },
-      {
-        value: 80,
-        label: "80°C",
-      },
-    ],
-    A_MARKS: [
-      { value: 0, label: "FOR_SET_POINT" },
-      {
-        value: 0,
-        label: "0A",
-      },
-      {
-        value: 2,
-        label: "2A",
-      },
-      {
-        value: 4,
-        label: "4A",
-      },
-      {
-        value: 6,
-        label: "6A",
-      },
-      {
-        value: 8,
-        label: "8A",
-      },
-    ],
+    AT_MARKS: [-100, 0, 20, 40, 60, 80].map((e) => ({
+      value: e,
+      label: <div className="text-[#444]">{e}°C</div>,
+    })),
+
+    ST_MARKS: [-100, 0, 20, 40, 60, 80].map((e) => ({
+      value: e,
+      label: <div className="text-[#444]">{e}°C</div>,
+    })),
+
+    A_MARKS: [-100, 0, 2, 4, 6, 8].map((e) => ({
+      value: e,
+      label: <div className="text-[#444]">{e}A</div>,
+    })),
   });
 
   const [simValue, setSimValue] = useState({
@@ -101,28 +46,21 @@ export const SimulatePage: React.FC = () => {
         setSimulation(res.data.M == 3);
         setMarks((prev) => {
           prev.AT_MARKS[0] = {
-            key: 1,
             value: res.data.SPT,
             label: (
-              <div className="text-[#ff0000]">
-                {res.data.SPT}°C (THRESHOLD) ⚠️
-              </div>
+              <div className="text-[#ff0000]">{res.data.SPT}°C ⚠️</div>
             ) as any,
           };
           prev.ST_MARKS[0] = {
             value: res.data.SPT,
             label: (
-              <div className="text-[#ff0000]">
-                {res.data.SPT}°C (THRESHOLD) ⚠️
-              </div>
+              <div className="text-[#ff0000]">{res.data.SPT}°C ⚠️</div>
             ) as any,
           };
           prev.A_MARKS[0] = {
             value: res.data.SPA,
             label: (
-              <div className="text-[#ff0000]">
-                {res.data.SPA}A (THRESHOLD)⚠️
-              </div>
+              <div className="text-[#ff0000]">{res.data.SPA}A ⚠️</div>
             ) as any,
           };
           return prev;
@@ -187,8 +125,8 @@ export const SimulatePage: React.FC = () => {
 
   return (
     <PageLayout>
-      <div className="flex gap-2 items-center">
-        {LANG(LANG_OBJ.CHARGING.SIMUATION_MODE)}
+      <div className="flex gap-4 justify-center items-center">
+        <div>{LANG(LANG_OBJ.CHARGING.SIMUATION_MODE)}</div>
         <FormGroup>
           <FormControlLabel
             control={
@@ -208,9 +146,9 @@ export const SimulatePage: React.FC = () => {
         </FormGroup>
       </div>
 
-      <div className="grid grid-cols-3 grid-rows-1 min-h-[500px] mt-24 mb-48">
+      <div className="grid grid-cols-3 grid-rows-1 h-[550px] mt-24 mb-48">
         <div className="flex flex-col items-center p-4">
-          <div className="h-full p-4">
+          <div className="h-[500px] p-4">
             <Slider
               min={0}
               max={80}
@@ -229,10 +167,10 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          {LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
+          <div className="h-[50px]">{LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}</div>
         </div>
         <div className="flex flex-col items-center p-4">
-          <div className="h-full p-4">
+          <div className="h-[500px] p-4">
             <Slider
               min={0}
               max={80}
@@ -251,10 +189,10 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          {LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
+          <div className="h-[50px]">{LANG(LANG_OBJ.GAUGE.STATION_TEMP)}</div>
         </div>
         <div className="flex flex-col items-center p-4">
-          <div className="h-full p-4">
+          <div className="h-[500px] p-4">
             <Slider
               min={0}
               max={8}
@@ -273,7 +211,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          {LANG(LANG_OBJ.GAUGE.CURRENT)}
+          <div className="h-[50px]">{LANG(LANG_OBJ.GAUGE.CURRENT)}</div>
         </div>
       </div>
     </PageLayout>
