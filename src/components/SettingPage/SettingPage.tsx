@@ -8,38 +8,8 @@ import { sleep } from "../../utils";
 import { PageLayout } from "../PageLayout";
 
 const marks = {
-  SPT_MARKS: [
-    {
-      value: 0,
-      label: "0°C",
-    },
-    {
-      value: 20,
-      label: "20°C",
-    },
-    {
-      value: 40,
-      label: "40°C",
-    },
-    {
-      value: 60,
-      label: "60°C",
-    },
-    {
-      value: 80,
-      label: "80°C",
-    },
-  ],
-  SPA_MARKS: [
-    {
-      value: 1,
-      label: "1A",
-    },
-    {
-      value: 7,
-      label: "7A",
-    },
-  ],
+  SPT_MARKS: [20, 30, 40, 50, 60].map((e) => ({ value: e, label: `${e}°C` })),
+  SPA_MARKS: [1, 2, 3, 4, 5, 6, 7].map((e) => ({ value: e, label: `${e}A` })),
 };
 
 export const SettingPage: React.FC = () => {
@@ -88,52 +58,57 @@ export const SettingPage: React.FC = () => {
 
   return (
     <PageLayout>
-      <div className="grid grid-cols-2 grid-rows-1 min-h-[500px] mt-24 mb-48">
-        <div className="flex flex-col items-center p-4">
-          <div className="h-full p-4">
-            <Slider
-              min={20}
-              max={60}
-              value={spValue.SPT}
-              valueLabelFormat={(v) => {
-                return `${v}°C`;
-              }}
-              step={1}
-              valueLabelDisplay="on"
-              orientation="vertical"
-              marks={marks.SPT_MARKS}
-              onChange={(_, value) => {
-                setSpValue((prev) => {
-                  return { ...prev, SPT: value as number };
-                });
-              }}
-            />
+      <div className="flex flex-col items-center mt-24 mb-48">
+        <div className="grid grid-cols-2 grid-rows-1 min-h-[500px]">
+          <div className="flex flex-col items-center p-4">
+            <div className="h-full p-4">
+              <Slider
+                min={20}
+                max={60}
+                value={spValue.SPT}
+                valueLabelFormat={(v) => {
+                  return `${v}°C`;
+                }}
+                step={1}
+                valueLabelDisplay="on"
+                orientation="vertical"
+                marks={marks.SPT_MARKS}
+                onChange={(_, value) => {
+                  setSpValue((prev) => {
+                    return { ...prev, SPT: value as number };
+                  });
+                }}
+              />
+            </div>
+            SET POINT TEMPERATURE
           </div>
-          SET POINT TEMPERATURE
-        </div>
-        <div className="flex flex-col items-center p-4">
-          <div className="h-full p-4">
-            <Slider
-              min={1}
-              max={7}
-              value={spValue.SPA}
-              valueLabelFormat={(v) => {
-                return `${v}A`;
-              }}
-              step={0.1}
-              valueLabelDisplay="on"
-              orientation="vertical"
-              marks={marks.SPA_MARKS}
-              onChange={(_, value) => {
-                setSpValue((prev) => {
-                  return { ...prev, SPA: value as number };
-                });
-              }}
-            />
+          <div className="flex flex-col items-center p-4">
+            <div className="h-full p-4">
+              <Slider
+                min={1}
+                max={7}
+                value={spValue.SPA}
+                valueLabelFormat={(v) => {
+                  return `${v}A`;
+                }}
+                step={0.1}
+                valueLabelDisplay="on"
+                orientation="vertical"
+                marks={marks.SPA_MARKS}
+                onChange={(_, value) => {
+                  setSpValue((prev) => {
+                    return { ...prev, SPA: value as number };
+                  });
+                }}
+              />
+            </div>
+            SET POINT CURRENT
           </div>
-          SET POINT CURRENT
         </div>
-        <Button onClick={handleSetSP}>UPDATE</Button>
+
+        <Button variant="contained" onClick={handleSetSP}>
+          UPDATE
+        </Button>
       </div>
     </PageLayout>
   );
