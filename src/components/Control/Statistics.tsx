@@ -113,7 +113,7 @@ export const Statistics: React.FC = () => {
     const interval = setInterval(() => {
       handleGetStats();
       handleGetSeries();
-      // handleGetLogs();
+      handleGetLogs();
     }, 1000);
 
     return () => {
@@ -345,6 +345,7 @@ export const Statistics: React.FC = () => {
           />
         </div>
       </div>
+      <div className="hidden">{JSON.stringify(logs)}</div>
     </div>
   );
 };

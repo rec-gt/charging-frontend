@@ -11,9 +11,9 @@ type GaugePlateProps = {
 } & any;
 
 export const GaugePlate: React.FC<GaugePlateProps> = (props) => {
-  const { title, value, text, color, icon,...rest } = props;
+  const { title, value, text, color, icon, ...rest } = props;
   return (
-    <Plate title={title} icon={icon}>
+    <Plate title={title} topRightElement={icon}>
       <Gauge
         text={text}
         value={value}
