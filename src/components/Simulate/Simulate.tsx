@@ -181,7 +181,13 @@ export const SimulatePage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    handleChangeSIM();
+    const debounceTimer = setTimeout(() => {
+      handleChangeSIM();
+    }, 300);
+
+    return () => {
+      clearTimeout(debounceTimer);
+    };
   }, [simValue]);
 
   return (
