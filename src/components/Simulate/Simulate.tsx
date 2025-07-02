@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { backendServer } from "../../config";
 import { setPageLoading } from "../../state/pageLoadingSlice";
 import { PageLayout } from "../PageLayout";
-import { SimulateTitle } from "../Title";
+import { SimulateTitle } from "../Title/SimulateTitle";
 
 export const SimulatePage: React.FC = () => {
   const dispatch = useDispatch();
