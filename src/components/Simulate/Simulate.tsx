@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { backendServer } from "../../config";
 import { setPageLoading } from "../../state/pageLoadingSlice";
+import { LANG, LANG_OBJ } from "../../utils";
 import { PageLayout } from "../PageLayout";
-import { SimulateTitle } from "../Title/SimulateTitle";
 
 export const SimulatePage: React.FC = () => {
   const dispatch = useDispatch();
@@ -192,12 +192,8 @@ export const SimulatePage: React.FC = () => {
 
   return (
     <PageLayout>
-      <div className="w-full block sm:hidden">
-        <SimulateTitle />
-      </div>
-
       <div className="flex gap-2 items-center">
-        SIMULATION
+        {LANG(LANG_OBJ.CHARGING.SIMUATION_MODE)}
         <FormGroup>
           <FormControlLabel
             control={
@@ -208,7 +204,11 @@ export const SimulatePage: React.FC = () => {
                 checked={simulation}
               />
             }
-            label={simulation ? "ON" : "OFF"}
+            label={LANG(
+              simulation
+                ? LANG_OBJ.CHARGING.SIMUATION_MODE.ON
+                : LANG_OBJ.CHARGING.SIMUATION_MODE.OFF
+            )}
           />
         </FormGroup>
       </div>

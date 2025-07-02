@@ -88,8 +88,23 @@ export const LANG_OBJ = {
       },
       SIMUATION: {
         EN: "Simulation",
-        JP: "模擬",
+        JP: "シミュレーション",
         ZH_T: "模擬",
+      },
+    },
+    SIMUATION_MODE: {
+      EN: "Simulation Mode",
+      JP: "シミュレーションモード",
+      ZH_T: "模擬模式",
+      ON: {
+        EN: "Enabled",
+        JP: "有効",
+        ZH_T: "開啓",
+      },
+      OFF: {
+        EN: "Disabled",
+        JP: "無効",
+        ZH_T: "關閉",
       },
     },
     THRESHOLD: {
