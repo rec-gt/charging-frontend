@@ -183,7 +183,7 @@ export const SimulatePage: React.FC = () => {
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
       handleChangeSIM();
-    }, 300);
+    }, 1000);
 
     return () => {
       clearTimeout(debounceTimer);
