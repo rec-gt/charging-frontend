@@ -30,9 +30,9 @@ export const SimulatePage: React.FC = () => {
   });
 
   const [simValue, setSimValue] = useState({
-    SIM_AT: 20,
-    SIM_ST: 20,
-    SIM_A: 0.5,
+    SIM_AT: 25,
+    SIM_ST: 25,
+    SIM_A: 1,
   });
 
   const handleGetStats = async () => {
@@ -41,8 +41,6 @@ export const SimulatePage: React.FC = () => {
       url: `${backendServer}/system/get/stats`,
     })
       .then((res) => {
-        console.log(res.data);
-
         setSimulation(res.data.M == 3);
         setMarks((prev) => {
           prev.AT_MARKS[0] = {
@@ -146,7 +144,7 @@ export const SimulatePage: React.FC = () => {
         </FormGroup>
       </div>
 
-      <div className="grid grid-cols-3 grid-rows-1 h-[550px] mt-24 mb-48">
+      <div className="grid grid-cols-3 grid-rows-1 h-[550px] mt-4 mb-48">
         <div className="flex flex-col items-center p-4">
           <div className="h-[500px] p-4">
             <Slider
@@ -167,7 +165,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          <div className="h-[50px]">{LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}</div>
+          <div className="h-[25px] mt-[25px]">{LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}</div>
         </div>
         <div className="flex flex-col items-center p-4">
           <div className="h-[500px] p-4">
@@ -189,7 +187,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          <div className="h-[50px]">{LANG(LANG_OBJ.GAUGE.STATION_TEMP)}</div>
+          <div className="h-[25px] mt-[25px]">{LANG(LANG_OBJ.GAUGE.STATION_TEMP)}</div>
         </div>
         <div className="flex flex-col items-center p-4">
           <div className="h-[500px] p-4">
@@ -211,7 +209,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          <div className="h-[50px]">{LANG(LANG_OBJ.GAUGE.CURRENT)}</div>
+          <div className="h-[25px] mt-[25px]">{LANG(LANG_OBJ.GAUGE.CURRENT)}</div>
         </div>
       </div>
     </PageLayout>
