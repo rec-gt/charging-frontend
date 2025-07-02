@@ -174,7 +174,7 @@ export const Statistics: React.FC = () => {
       <div className="row-start-1 col-start-2 sm:row-start-2 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.CHARGING.THRESHOLD)}
-          text={`≥ ${stats.SPT.toFixed(0)} °C / ${stats.SPA.toFixed(0)} Amp`}
+          text={`≥ ${stats.SPT.toFixed(0)} °C / ${stats.SPA.toFixed(1)} A`}
           icon={<ThermostatIcon sx={{ color: "#ff0000", fontSize: "16pt" }} />}
           isAlert={false}
         />
@@ -199,7 +199,7 @@ export const Statistics: React.FC = () => {
       <div className="row-start-3 col-start-1 sm:row-start-5 sm:col-start-1 col-span-1 row-span-1">
         <TextPlate
           title={LANG(LANG_OBJ.GAUGE.CURRENT)}
-          text={`${stats.A.toFixed(1)} Amp`}
+          text={`${stats.A.toFixed(1)} A`}
           icon={
             <ElectricBoltIcon sx={{ color: "#ffa500", fontSize: "16pt" }} />
           }
