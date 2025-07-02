@@ -219,7 +219,7 @@ export const SimulatePage: React.FC = () => {
             <Slider
               min={0}
               max={80}
-              defaultValue={20}
+              value={simValue.SIM_AT}
               valueLabelFormat={(v) => {
                 return `${v}°C`;
               }}
@@ -241,7 +241,7 @@ export const SimulatePage: React.FC = () => {
             <Slider
               min={0}
               max={80}
-              defaultValue={20}
+              value={simValue.SIM_ST}
               valueLabelFormat={(v) => {
                 return `${v}°C`;
               }}
@@ -263,7 +263,7 @@ export const SimulatePage: React.FC = () => {
             <Slider
               min={0}
               max={8}
-              defaultValue={0.5}
+              value={simValue.SIM_A}
               valueLabelFormat={(v) => {
                 return `${v}A`;
               }}
