@@ -7,68 +7,59 @@ import { setPageLoading } from "../../state/pageLoadingSlice";
 import { sleep } from "../../utils";
 import { PageLayout } from "../PageLayout";
 
-const defaultStats = {
-  SPT: null,
-  SPA: null,
+const marks = {
+  SPT_MARKS: [
+    {
+      value: 0,
+      label: "0°C",
+    },
+    {
+      value: 20,
+      label: "20°C",
+    },
+    {
+      value: 40,
+      label: "40°C",
+    },
+    {
+      value: 60,
+      label: "60°C",
+    },
+    {
+      value: 80,
+      label: "80°C",
+    },
+  ],
+  SPA_MARKS: [
+    {
+      value: 0,
+      label: "0A",
+    },
+    {
+      value: 2,
+      label: "2A",
+    },
+    {
+      value: 4,
+      label: "4A",
+    },
+    {
+      value: 6,
+      label: "6A",
+    },
+    {
+      value: 8,
+      label: "8A",
+    },
+  ],
 };
 
 export const SettingPage: React.FC = () => {
   const dispatch = useDispatch();
-  const [stats, setStats] = useState(defaultStats);
-  const [SPT, setSPT] = useState(80);
-  const [SPA, setSPA] = useState(1);
 
-  const [marks, setMarks] = useState({
-    SPT_MARKS: [
-      {
-        value: 0,
-        label: "0°C",
-      },
-      {
-        value: 20,
-        label: "20°C",
-      },
-      {
-        value: 40,
-        label: "40°C",
-      },
-      {
-        value: 60,
-        label: "60°C",
-      },
-      {
-        value: 80,
-        label: "80°C",
-      },
-    ],
-    SPA_MARKS: [
-      {
-        value: 0,
-        label: "0A",
-      },
-      {
-        value: 2,
-        label: "2A",
-      },
-      {
-        value: 4,
-        label: "4A",
-      },
-      {
-        value: 6,
-        label: "6A",
-      },
-      {
-        value: 8,
-        label: "8A",
-      },
-    ],
-  });
-
-  const [simValue, setSimValue] = useState({
-    SIM_AT: 20,
-    SIM_ST: 20,
-    SIM_A: 0.5,
+  const [spValue, setSpValue] = useState({
+    SPT: 0,
+    SPA: 0,
   });
 
   const handleGetStats = async () => {
@@ -77,7 +68,7 @@ export const SettingPage: React.FC = () => {
       url: `${backendServer}/system/get/stats`,
     })
       .then((res) => {
-        setStats(res.data);
+        setSpValue({ SPT: res.data.SPT, SPA: res.data.SPA });
       })
       .catch((err) => {
         console.log(err);
@@ -90,14 +81,10 @@ export const SettingPage: React.FC = () => {
       method: "POST",
       url: `${backendServer}/system/set/sp`,
       data: {
-        SPT,
-        SPA,
+        SPT: spValue.SPT,
+        SPA: spValue.SPA,
       },
     })
-      .then((res) => {
-        setStats(res.data);
-        console.log(res.data);
-      })
       .catch((err) => {
         console.log(err);
       })
@@ -108,56 +95,18 @@ export const SettingPage: React.FC = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      handleGetStats();
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
+    handleGetStats();
   }, []);
 
   return (
     <PageLayout>
-      <div className="flex flex-col gap-2 justify-center items-center h-[600px]">
-        <div className="flex gap-2 justify-center items-center">
-          <div>CURRENT SET POINT TEMPERATURE</div>
-          <div>{stats.SPT ?? "-"}</div>
-        </div>
-        <div className="flex gap-2 justify-center items-center">
-          <div>CURRENT SET POINT CURRENT</div>
-          <div>{stats.SPA ?? "-"}</div>
-        </div>
-        <div className="flex gap-2 justify-center items-center">
-          <div>SET POINT TEMPERATURE</div>
-          <input
-            className="py-[0.1rem] px-1 rounded-sm border-[2px] border-[#ccc]"
-            value={SPT}
-            onChange={(e) => {
-              setSPT(Number(e.target.value));
-            }}
-          />
-        </div>
-        <div className="flex gap-2 justify-center items-center">
-          <div>SET POINT CURRENT</div>
-          <input
-            className="py-[0.1rem] px-1 rounded-sm border-[2px] border-[#ccc]"
-            value={SPA}
-            onChange={(e) => {
-              setSPA(Number(e.target.value));
-            }}
-          />
-        </div>
-        <Button onClick={handleSetSP}>UPDATE</Button>
-      </div>
-
-      <div className="grid grid-cols-3 grid-rows-1 min-h-[500px] mt-24 mb-48">
+      <div className="grid grid-cols-2 grid-rows-1 min-h-[500px] mt-24 mb-48">
         <div className="flex flex-col items-center p-4">
           <div className="h-full p-4">
             <Slider
               min={0}
-              max={80}
-              defaultValue={20}
+              max={60}
+              value={spValue.SPT}
               valueLabelFormat={(v) => {
                 return `${v}°C`;
               }}
@@ -166,20 +115,20 @@ export const SettingPage: React.FC = () => {
               orientation="vertical"
               marks={marks.SPT_MARKS}
               onChange={(_, value) => {
-                setSimValue((prev) => {
-                  return { ...prev, SIM_ST: value as number };
+                setSpValue((prev) => {
+                  return { ...prev, SPT: value as number };
                 });
               }}
             />
           </div>
-          STATION TEMPERATURE
+          SET POINT TEMPERATURE
         </div>
         <div className="flex flex-col items-center p-4">
           <div className="h-full p-4">
             <Slider
               min={0}
               max={8}
-              defaultValue={0.5}
+              value={spValue.SPA}
               valueLabelFormat={(v) => {
                 return `${v}A`;
               }}
@@ -188,14 +137,15 @@ export const SettingPage: React.FC = () => {
               orientation="vertical"
               marks={marks.SPA_MARKS}
               onChange={(_, value) => {
-                setSimValue((prev) => {
-                  return { ...prev, SIM_A: value as number };
+                setSpValue((prev) => {
+                  return { ...prev, SPA: value as number };
                 });
               }}
             />
           </div>
-          CURRENT
+          SET POINT CURRENT
         </div>
+        <Button onClick={handleSetSP}>UPDATE</Button>
       </div>
     </PageLayout>
   );
