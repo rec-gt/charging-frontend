@@ -16,27 +16,22 @@ export const SimulatePage: React.FC = () => {
     AT_MARKS: [
       { key: 0, value: 0, label: "FOR_SET_POINT" },
       {
-        key: 1,
         value: 0,
         label: "0°C",
       },
       {
-        key: 2,
         value: 20,
         label: "20°C",
       },
       {
-        key: 3,
         value: 40,
         label: "40°C",
       },
       {
-        key: 4,
         value: 60,
         label: "60°C",
       },
       {
-        key: 5,
         value: 80,
         label: "80°C",
       },
@@ -234,7 +229,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          AMBIENT TEMPERATURE
+          {LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
         </div>
         <div className="flex flex-col items-center p-4">
           <div className="h-full p-4">
@@ -256,7 +251,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          STATION TEMPERATURE
+          {LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
         </div>
         <div className="flex flex-col items-center p-4">
           <div className="h-full p-4">
@@ -278,7 +273,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          CURRENT
+          {LANG(LANG_OBJ.GAUGE.CURRENT)}
         </div>
       </div>
     </PageLayout>
