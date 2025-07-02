@@ -9,7 +9,7 @@ export default defineConfig({
   //   // host: true,
   // },
   server: {
-    port: 80,
+    port: 3011,
     host: true,
   },
 });
