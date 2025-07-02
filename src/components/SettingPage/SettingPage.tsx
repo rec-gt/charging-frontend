@@ -32,24 +32,12 @@ const marks = {
   ],
   SPA_MARKS: [
     {
-      value: 0,
-      label: "0A",
+      value: 1,
+      label: "1A",
     },
     {
-      value: 2,
-      label: "2A",
-    },
-    {
-      value: 4,
-      label: "4A",
-    },
-    {
-      value: 6,
-      label: "6A",
-    },
-    {
-      value: 8,
-      label: "8A",
+      value: 7,
+      label: "7A",
     },
   ],
 };
@@ -104,7 +92,7 @@ export const SettingPage: React.FC = () => {
         <div className="flex flex-col items-center p-4">
           <div className="h-full p-4">
             <Slider
-              min={0}
+              min={20}
               max={60}
               value={spValue.SPT}
               valueLabelFormat={(v) => {
@@ -126,8 +114,8 @@ export const SettingPage: React.FC = () => {
         <div className="flex flex-col items-center p-4">
           <div className="h-full p-4">
             <Slider
-              min={0}
-              max={8}
+              min={1}
+              max={7}
               value={spValue.SPA}
               valueLabelFormat={(v) => {
                 return `${v}A`;
