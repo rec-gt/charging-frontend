@@ -203,8 +203,9 @@ export const SimulatePage: React.FC = () => {
               min={0}
               max={80}
               defaultValue={20}
-              getAriaLabel={() => "Temperature"}
-              getAriaValueText={(v) => `${v}°C`}
+              valueLabelFormat={(v) => {
+                return `${v}°C`;
+              }}
               step={1}
               valueLabelDisplay="on"
               orientation="vertical"
@@ -221,9 +222,10 @@ export const SimulatePage: React.FC = () => {
             <Slider
               min={0}
               max={8}
-              defaultValue={1}
-              getAriaLabel={() => "Temperature"}
-              getAriaValueText={(v) => `${v}°C`}
+              defaultValue={0.5}
+              valueLabelFormat={(v) => {
+                return `${v}A`;
+              }}
               step={0.1}
               valueLabelDisplay="on"
               orientation="vertical"
