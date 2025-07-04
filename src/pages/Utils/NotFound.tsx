@@ -8,7 +8,7 @@ export const NotFound: React.FC = () => {
       <Box>
         {`GO BACK TO `}
         <u>
-          <a href="/admin/control">CONTROL PAGE</a>
+          <a href="/demo">DEMO PAGE</a>
         </u>
       </Box>
     </VFlex>
