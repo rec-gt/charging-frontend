@@ -31,12 +31,12 @@ function App() {
 
   const ROUTES_CONFIG = [
     {
-      path: "/admin/control",
+      path: "/demo",
       element: <ControlPage />,
       allowed: [USER_ROLE.GUEST, USER_ROLE.ADMIN],
     },
     {
-      path: "/admin/simulate",
+      path: "/sim",
       element: <SimulatePage />,
       allowed: [USER_ROLE.GUEST, USER_ROLE.ADMIN],
     },
