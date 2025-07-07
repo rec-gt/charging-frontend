@@ -7,6 +7,13 @@ import { setPageLoading } from "../../state/pageLoadingSlice";
 import { LANG, LANG_OBJ } from "../../utils";
 import { PageLayout } from "../PageLayout";
 
+const slidetStyle = {
+  margin: 0,
+  "& .MuiSlider-markLabel": {
+    left: "2rem",
+  },
+};
+
 export const SimulatePage: React.FC = () => {
   const dispatch = useDispatch();
 
@@ -148,6 +155,8 @@ export const SimulatePage: React.FC = () => {
         <div className="flex flex-col items-center p-4">
           <div className="h-[500px] p-4">
             <Slider
+              disabled={!simulation}
+              sx={slidetStyle}
               min={0}
               max={80}
               value={simValue.SIM_AT}
@@ -165,11 +174,15 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          <div className="h-[25px] mt-[25px]">{LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}</div>
+          <div className="h-[25px] mt-[25px]">
+            {LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
+          </div>
         </div>
         <div className="flex flex-col items-center p-4">
           <div className="h-[500px] p-4">
             <Slider
+              sx={slidetStyle}
+              disabled={!simulation}
               min={0}
               max={80}
               value={simValue.SIM_ST}
@@ -187,11 +200,15 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          <div className="h-[25px] mt-[25px]">{LANG(LANG_OBJ.GAUGE.STATION_TEMP)}</div>
+          <div className="h-[25px] mt-[25px]">
+            {LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
+          </div>
         </div>
         <div className="flex flex-col items-center p-4">
           <div className="h-[500px] p-4">
             <Slider
+              sx={slidetStyle}
+              disabled={!simulation}
               min={0}
               max={8}
               value={simValue.SIM_A}
@@ -209,7 +226,9 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          <div className="h-[25px] mt-[25px]">{LANG(LANG_OBJ.GAUGE.CURRENT)}</div>
+          <div className="h-[25px] mt-[25px]">
+            {LANG(LANG_OBJ.GAUGE.CURRENT)}
+          </div>
         </div>
       </div>
     </PageLayout>
