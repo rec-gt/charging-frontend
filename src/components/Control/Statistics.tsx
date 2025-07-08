@@ -138,13 +138,13 @@ export const Statistics: React.FC = () => {
             title={LANG(LANG_OBJ.CHARGING.MODE.TITLE)}
             text={
               [
-                <span className="text-[clamp(15pt,3cqw,26pt)]!">
-                  {LANG(LANG_OBJ.CHARGING.MODE.RUNNING)}
+                <span className="text-[clamp(15pt,3cqw,26pt)]! text-[#52b202]">
+                  {LANG(LANG_OBJ.CHARGING.MODE.RUNNING)}✅
                 </span>,
                 <span className="text-[clamp(15pt,3cqw,26pt)]! text-[#ff0000]">
                   {LANG(LANG_OBJ.CHARGING.MODE.STOPPED)}⚠️
                 </span>,
-                <span className="text-[clamp(15pt,3cqw,26pt)]!">
+                <span className="text-[clamp(15pt,3cqw,26pt)]! text-[#52b202]">
                   {LANG(LANG_OBJ.CHARGING.MODE.BYPASS)}🔧
                 </span>,
                 <span className="text-[clamp(15pt,3cqw,26pt)]!">
@@ -254,7 +254,7 @@ export const Statistics: React.FC = () => {
                   hoverBackgroundColor: "#ff0000",
                   borderWidth: 1.5,
                   borderColor: "#ff0000",
-                  borderDash: [10, 10],
+                  // borderDash: [10, 10],
                   pointRadius: 0,
                   data: Array.from(
                     { length: series.time.length },
@@ -310,7 +310,7 @@ export const Statistics: React.FC = () => {
                   hoverBackgroundColor: "#ff0000",
                   borderWidth: 1.5,
                   borderColor: "#ff0000",
-                  borderDash: [10, 10],
+                  // borderDash: [10, 10],
                   pointRadius: 0,
                   data: Array.from(
                     { length: series.time.length },

@@ -39,7 +39,12 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const currentTime = moment().tz("Asia/Tokyo").format("MMM-DD HH:mm:ss");
+      let currentTime = moment().tz("Asia/Tokyo").format("MMM-DD HH:mm:ss");
+
+      // if (window.innerWidth < 640) {
+      //   currentTime = moment().tz("Asia/Tokyo").format("HH:mm:ss");
+      // }
+
       setCurrentTimestamp(currentTime);
     }, 1000);
     return () => {
@@ -51,7 +56,9 @@ export const LineChartPlate: React.FC<LineChartPlateProps> = (props) => {
     <Plate
       title={title}
       topRightElement={icon}
-      topLeftElement={currentTimestamp}
+      topLeftElement={
+        <div className="text-[10pt]! sm:text-[14pt]!">{currentTimestamp}</div>
+      }
     >
       <div className="w-full h-full px-2">
         <Line options={{ ...globalOptions, ...options }} data={data} />
