@@ -158,7 +158,7 @@ export const SimulatePage: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-3 grid-rows-1 h-[550px] mt-4 mb-48">
-        <div className="flex flex-col items-center p-4">
+        <div className="flex flex-col items-center px-1 py-4">
           <div className="h-[500px] p-4">
             <Slider
               disabled={!simulation}
@@ -184,7 +184,7 @@ export const SimulatePage: React.FC = () => {
             {LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
           </div>
         </div>
-        <div className="flex flex-col items-center p-4">
+        <div className="flex flex-col items-center px-1 py-4">
           <div className="h-[500px] p-4">
             <Slider
               sx={slidetStyle}
@@ -210,7 +210,7 @@ export const SimulatePage: React.FC = () => {
             {LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
           </div>
         </div>
-        <div className="flex flex-col items-center p-4">
+        <div className="flex flex-col items-center px-1 py-4">
           <div className="h-[500px] p-4">
             <Slider
               sx={slidetStyle}
