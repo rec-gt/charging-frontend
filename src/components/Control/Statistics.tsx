@@ -132,7 +132,7 @@ export const Statistics: React.FC = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-2 grid-rows-9 h-[1000px] sm:grid-cols-3 sm:grid-rows-6 sm:h-[650px] gap-2 mb-4">
+      <div className="grid grid-cols-2 grid-rows-9 h-[1100px] sm:grid-cols-3 sm:grid-rows-6 sm:h-[750px] gap-2 mb-4">
         <div className="row-start-1 col-start-1 sm:row-start-1 sm:col-start-1 col-span-1 row-span-1">
           <TextPlate
             title={LANG(LANG_OBJ.CHARGING.MODE.TITLE)}
@@ -170,7 +170,7 @@ export const Statistics: React.FC = () => {
                     handleChangeMode(1);
                   }}
                   sx={{
-                    color: stats.M == 1 ? "#52b202" : "#555",
+                    color: stats.M == 1 ? "#ff0000" : "#555",
                     fontSize: "16pt",
                   }}
                 />

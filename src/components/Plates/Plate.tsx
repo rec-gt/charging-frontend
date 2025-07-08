@@ -22,7 +22,7 @@ export const Plate: React.FC<PlateProps> = (props) => {
         <div className="w-[32px] px-1 flex justify-start items-center text-nowrap">
           {topLeftElement}
         </div>
-        <div className="px-1 w-full flex justify-center items-center text-center">
+        <div className="px-1 w-full flex justify-center items-center text-center text-[clamp(12pt,3cqw,16pt)]!">
           {title}
         </div>
         <div className="w-[32px] px-1 flex justify-end items-center text-nowrap">

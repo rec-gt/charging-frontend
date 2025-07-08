@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-between items-center py-4 px-4 sm:px-24 w-full h-24 bg-(--color-secondary)">
+    <div className="flex justify-between items-center py-4 px-4 sm:px-24 w-full h-24 sm:h-32 bg-(--color-secondary)">
       <img className="h-full object-contain" src="/images/logo.png" />
       <div className="w-full hidden sm:block">
         <SystemTitle />
