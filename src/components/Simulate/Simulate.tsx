@@ -22,17 +22,17 @@ export const SimulatePage: React.FC = () => {
   const [marks, setMarks] = useState({
     AT_MARKS: [-100, 0, 20, 40, 60, 80].map((e) => ({
       value: e,
-      label: <div className="text-[#444]">{e}°C</div>,
+      label: <div className="text-[#444] text-[14pt]!">{e}°C</div>,
     })),
 
     ST_MARKS: [-100, 0, 20, 40, 60, 80].map((e) => ({
       value: e,
-      label: <div className="text-[#444]">{e}°C</div>,
+      label: <div className="text-[#444] text-[14pt]!">{e}°C</div>,
     })),
 
     A_MARKS: [-100, 0, 2, 4, 6, 8].map((e) => ({
       value: e,
-      label: <div className="text-[#444]">{e}A</div>,
+      label: <div className="text-[#444] text-[14pt]!">{e}A</div>,
     })),
   });
 
@@ -131,7 +131,9 @@ export const SimulatePage: React.FC = () => {
   return (
     <PageLayout>
       <div className="flex gap-4 justify-center items-center">
-        <div>{LANG(LANG_OBJ.CHARGING.SIMUATION_MODE)}</div>
+        <div className="text-[14pt]!">
+          {LANG(LANG_OBJ.CHARGING.SIMUATION_MODE)}
+        </div>
         <FormGroup>
           <FormControlLabel
             control={
@@ -142,11 +144,15 @@ export const SimulatePage: React.FC = () => {
                 checked={simulation}
               />
             }
-            label={LANG(
-              simulation
-                ? LANG_OBJ.CHARGING.SIMUATION_MODE.ON
-                : LANG_OBJ.CHARGING.SIMUATION_MODE.OFF
-            )}
+            label={
+              <div className="text-[14pt]!">
+                {LANG(
+                  simulation
+                    ? LANG_OBJ.CHARGING.SIMUATION_MODE.ON
+                    : LANG_OBJ.CHARGING.SIMUATION_MODE.OFF
+                )}
+              </div>
+            }
           />
         </FormGroup>
       </div>
@@ -174,7 +180,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          <div className="h-[25px] mt-[25px]">
+          <div className="h-[25px] mt-[25px] text-[14pt]! text-center">
             {LANG(LANG_OBJ.GAUGE.AMBIENT_TEMP)}
           </div>
         </div>
@@ -200,7 +206,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          <div className="h-[25px] mt-[25px]">
+          <div className="h-[25px] mt-[25px] text-[14pt]! text-center">
             {LANG(LANG_OBJ.GAUGE.STATION_TEMP)}
           </div>
         </div>
@@ -226,7 +232,7 @@ export const SimulatePage: React.FC = () => {
               }}
             />
           </div>
-          <div className="h-[25px] mt-[25px]">
+          <div className="h-[25px] mt-[25px] text-[14pt]! text-center">
             {LANG(LANG_OBJ.GAUGE.CURRENT)}
           </div>
         </div>
